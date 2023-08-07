@@ -15,37 +15,42 @@ namespace KMS.Application.Services.OrganizationService
             _mapper = mapper;
         }
 
-        public bool Add(OrganizationDto organizationDto)
+        public Task<int> Add(Organization organization)
+        {
+            return _organizationRepository.Add(organization);
+        }
+
+        public Task<int> Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Guid id)
+        public Task<int> Delete(string name)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(string name)
+        public Task<Organization> Get(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public OrganizationDto Get(Guid id)
+        public Task<Organization> Get(string name)
         {
             throw new NotImplementedException();
         }
 
-        public OrganizationDto Get(string name)
+        public Task<List<Organization>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public List<OrganizationDto> GetAll()
+        public Task<List<Organization>> GetAll(int page, int pageCount)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(OrganizationDto organizationDto)
+        public Task<int> Update(Organization organization)
         {
             throw new NotImplementedException();
         }

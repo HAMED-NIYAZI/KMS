@@ -9,7 +9,7 @@ namespace KMS.Data.Repositories.GenericDapper
     public class GenericDapperRepository : IGenericDapperRepository
     {
         private readonly IConfiguration _config;
-        private string Connectionstring = "DefaultConnection";
+        private string Connectionstring = "KMSConnectionString";
 
         public GenericDapperRepository(IConfiguration config)
         {

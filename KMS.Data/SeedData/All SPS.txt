@@ -1,14 +1,13 @@
 ﻿
-----------------------------Organization.Insert-----------------------------------
+----------------Organization.Insert------------------------------
 
 USE KMS_DB
 GO
- 09:49:28 ب.ظ ******/
-SET ANSI_NULLS ON
+ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-alter PROCEDURE [dbo].[Organization.Insert](
+create PROCEDURE [dbo].[Organization.Insert](
 @Id UNIQUEIDENTIFIER,
  	@SortingNumber int,
 	@PersianTitle nvarchar(100),

@@ -9,13 +9,13 @@ namespace KMS.Data.Repositories.Organization
 {
     public interface IOrganizationRepository
     {
-        List<Domain.Organization> GetAll();
-        List<Domain.Organization> GetAll(int page , int pageCount);
-        Domain.Organization? Get(Guid id);
-        Domain.Organization? Get(string name);
-        int Delete(Guid id);
-        int Delete(string name);
-        int Update(Domain.Organization organization);
-        int Add(Domain.Organization organization);
+        Task<List<Domain.Organization>> GetAll();
+        Task<List<Domain.Organization>> GetAll(int page , int pageCount);
+        Task<Domain.Organization?> Get(Guid id);
+        Task<Domain.Organization?> Get(string name);
+        Task<int> Delete(Guid id);
+        Task<int> Delete(string name);
+        Task<int> Update(Domain.Organization organization);
+        Task<int> Add(Domain.Organization organization);
     }
 }
