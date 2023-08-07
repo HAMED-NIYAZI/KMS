@@ -12,8 +12,5 @@
         public string Coulmn5 { get; set; }
         public Guid OrganizationId { get; set; }
 
-        #region Navigation Properties
-        public Organization Organization { get; set; }
-        #endregion
     }
 }
