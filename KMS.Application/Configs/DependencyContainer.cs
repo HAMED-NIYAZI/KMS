@@ -1,0 +1,21 @@
+﻿using KMS.Application.Services.OrganizationService;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace KMS.Application.Configs
+{
+    public static class DependencyContainer
+    {
+        public static void RegisterApplicationLayerServices(this IServiceCollection services)
+        {
+            #region Services
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+            services.AddScoped<IOrganizationService, OrganizationService>();
+
+            #endregion
+
+
+        }
+    }
+}
