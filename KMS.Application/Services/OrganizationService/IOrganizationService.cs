@@ -10,13 +10,13 @@ namespace KMS.Application.Services.OrganizationService
 {
     public interface IOrganizationService
     {
-        Task<List<Domain.Organization>> GetAll();
-        Task<List<Domain.Organization>> GetAll(int page, int pageCount);
-        Task<Domain.Organization?> Get(Guid id);
-        Task<Domain.Organization?> Get(string name);
+        Task<List<OrganizationDto>> GetAll();
+        Task<List<OrganizationDto>> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC");
+        Task<OrganizationDto?> Get(Guid id);
+        Task<OrganizationDto?> Get(string name);
         Task<int> Delete(Guid id);
         Task<int> Delete(string name);
-        Task<int> Update(Domain.Organization organization);
-        Task<int> Add(Domain.Organization organization);
+        Task<int> Update(OrganizationDto organization);
+        Task<int> Add(OrganizationDto organization);
     }
 }

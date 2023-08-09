@@ -8,14 +8,21 @@ namespace KMS.Data.Repositories.GenericDapper
 {
     public class GenericDapperRepository : IGenericDapperRepository
     {
-        private readonly IConfiguration _config;
-        private string Connectionstring = "KMSConnectionString";
+        private readonly IConfiguration config;
+        private readonly string connectionstring = "KMSConnectionString";
 
         public GenericDapperRepository(IConfiguration config)
         {
-            _config = config;
+            this.config = config;
         }
-        public void Dispose()
+
+        public int Count(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
+        {
+            using IDbConnection db = new SqlConnection(config.GetConnectionString(connectionstring));
+            return db.Query<int>(sp, parms, commandType: commandType).FirstOrDefault();
+        }
+
+        public static void Dispose()
         {
 
         }
@@ -27,25 +34,25 @@ namespace KMS.Data.Repositories.GenericDapper
 
         public T? Get<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.Text)
         {
-            using IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring));
+            using IDbConnection db = new SqlConnection(config.GetConnectionString(connectionstring));
             return db.Query<T>(sp, parms, commandType: commandType).FirstOrDefault();
         }
 
         public List<T> GetAll<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
         {
-            using IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring));
+            using IDbConnection db = new SqlConnection(config.GetConnectionString(connectionstring));
             return db.Query<T>(sp, parms, commandType: commandType).ToList();
         }
 
         public DbConnection GetDbconnection()
         {
-            return new SqlConnection(_config.GetConnectionString(Connectionstring));
+            return new SqlConnection(config.GetConnectionString(connectionstring));
         }
 
         public T? Insert<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
         {
             T? result;
-            using IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring));
+            using IDbConnection db = new SqlConnection(config.GetConnectionString(connectionstring));
             try
             {
                 if (db.State == ConnectionState.Closed)
@@ -79,7 +86,7 @@ namespace KMS.Data.Repositories.GenericDapper
         public T? Update<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
         {
             T? result;
-            using IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring));
+            using IDbConnection db = new SqlConnection(config.GetConnectionString(connectionstring));
             try
             {
                 if (db.State == ConnectionState.Closed)

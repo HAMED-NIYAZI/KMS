@@ -1,6 +1,6 @@
 ﻿namespace KMS.Domain
 {
-
+#nullable disable
     public class Combo
     {
         public Guid Id { get; set; }

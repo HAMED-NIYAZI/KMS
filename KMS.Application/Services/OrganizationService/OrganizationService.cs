@@ -7,52 +7,52 @@ namespace KMS.Application.Services.OrganizationService
 {
     public class OrganizationService : IOrganizationService
     {
-        private readonly IOrganizationRepository _organizationRepository;
-        private readonly IMapper _mapper;
+        private readonly IOrganizationRepository organizationRepository;
+        private readonly IMapper mapper;
         public OrganizationService(IOrganizationRepository organizationRepository, IMapper mapper)
         {
-            _organizationRepository = organizationRepository;
-            _mapper = mapper;
+            this.organizationRepository = organizationRepository;
+            this.mapper = mapper;
         }
 
-        public Task<int> Add(Organization organization)
+        public Task<int> Add(OrganizationDto organization)
         {
-            return _organizationRepository.Add(organization);
+            return organizationRepository.Add(mapper.Map<Organization>(organization));
         }
 
         public Task<int> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            return organizationRepository.Delete(id);
         }
 
-        public Task<int> Delete(string name)
+        public async Task<int> Delete(string name)
         {
-            throw new NotImplementedException();
+            return await organizationRepository.Delete(name);
         }
 
-        public Task<Organization> Get(Guid id)
+        public async Task<OrganizationDto> Get(Guid id)
         {
-            throw new NotImplementedException();
+            return mapper.Map<OrganizationDto>( await organizationRepository.Get(id));
         }
 
-        public Task<Organization> Get(string name)
+        public async Task<OrganizationDto> Get(string name)
         {
-            throw new NotImplementedException();
+            return mapper.Map<OrganizationDto>(await organizationRepository.Get(name));
         }
 
-        public Task<List<Organization>> GetAll()
+        public async Task<List<OrganizationDto>> GetAll()
         {
-            throw new NotImplementedException();
+            return mapper.Map<List<OrganizationDto>>(await organizationRepository.GetAll());
         }
 
-        public Task<List<Organization>> GetAll(int page, int pageCount)
+        public async Task<List<OrganizationDto>> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC")
         {
-            throw new NotImplementedException();
+            return mapper.Map<List<OrganizationDto>>(await organizationRepository.GetPage(PageNumber,RowsOfPage,SortingCol,SortType));
         }
 
-        public Task<int> Update(Organization organization)
+        public async Task<int> Update(OrganizationDto organizationDto)
         {
-            throw new NotImplementedException();
+            return  await organizationRepository.Update(mapper.Map<Organization>(organizationDto));
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿namespace KMS.Domain
 {
+#nullable disable
+
     public class ComboDetail
     {
         public Guid Id { get; set; }

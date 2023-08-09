@@ -2,10 +2,12 @@
 using Data.Context;
 using KMS.Data.Repositories.GenericDapper;
 using KMS.Data.Repositories.GenericEF;
+using KMS.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Runtime.CompilerServices;
+using static KMS.Domain.Enums;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KMS.Data.Repositories.Organization
@@ -20,7 +22,6 @@ namespace KMS.Data.Repositories.Organization
         {
             try
             {
-                string sp = "[dbo].[Organization.Insert]";
                 var @params = new DynamicParameters();
                 @params.Add("Id", organization.Id, DbType.Guid);
                 @params.Add("SortingNumber", organization.SortingNumber, DbType.Int32);
@@ -28,48 +29,144 @@ namespace KMS.Data.Repositories.Organization
                 @params.Add("EnglishTitle", organization.EnglishTitle, DbType.String);
                 @params.Add("Description", organization.Description, DbType.String);
                 @params.Add("ParentId", organization.ParentId, DbType.Guid);
-                var result = await Task.FromResult(Insert<Domain.Organization>(sp, @params, commandType: CommandType.StoredProcedure));
-                return 1;
+
+                return await Task.FromResult(Insert<int>("[dbo].[Organization.Insert]", @params, commandType: CommandType.StoredProcedure));
             }
             catch (Exception)
             {
+                //Log
                 return 0;
             }
         }
 
-        public Task<int> Delete(Guid id)
+        public async Task<int> Count()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var @params = new DynamicParameters();
+                return await Task.FromResult(Count("[dbo].[Organization.Count]", @params, commandType: CommandType.StoredProcedure));
+            }
+            catch (Exception)
+            {
+                //Log
+                return 0;
+            }
         }
 
-        public Task<int> Delete(string name)
+        public async Task<int> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var @params = new DynamicParameters();
+                @params.Add("Id", id, DbType.Guid);
+                return await Task.FromResult(Update<int>("[dbo].[Organization.DeleteById]", @params, commandType: CommandType.StoredProcedure));
+            }
+            catch (Exception)
+            {
+                //Log
+                return 0;
+            }
         }
 
-        public Task<Domain.Organization?> Get(Guid id)
+        public async Task<int> Delete(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var @params = new DynamicParameters();
+                @params.Add("PersianTitle", name, DbType.String);
+                return await Task.FromResult(Update<int>("[dbo].[Organization.DeleteByName]", @params, commandType: CommandType.StoredProcedure));
+            }
+            catch (Exception)
+            {
+                //Log
+                return 0;
+            }
         }
 
-        public Task<Domain.Organization?> Get(string name)
+        public async Task<Domain.Organization?> Get(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var @params = new DynamicParameters();
+                @params.Add("Id", id, DbType.Guid);
+                return await Task.FromResult(Get<Domain.Organization?>("[dbo].[Organization.GetById]", @params, commandType: CommandType.StoredProcedure));
+            }
+            catch (Exception)
+            {
+                //Log
+                return null;
+            }
         }
 
-        public Task<List<Domain.Organization>> GetAll()
+        public async Task<Domain.Organization?> Get(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var @params = new DynamicParameters();
+                @params.Add("Id", name, DbType.String);
+                return await Task.FromResult(Get<Domain.Organization>("[dbo].[Organization.GetByName]", @params, commandType: CommandType.StoredProcedure));
+            }
+            catch (Exception)
+            {
+                //Log
+                return null;
+            }
         }
 
-        public Task<List<Domain.Organization>> GetAll(int page, int pageCount)
+        public async Task<List<Domain.Organization>> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var @params = new DynamicParameters();
+                List<Domain.Organization> list = await Task.FromResult(GetAll<Domain.Organization>("[dbo].[Organization.GetAll]", @params, commandType: CommandType.StoredProcedure));
+                return list;
+            }
+            catch (Exception)
+            {
+                //Log
+                return null;
+            }
         }
 
-        public Task<int> Update(Domain.Organization organization)
+
+        public async Task<List<Domain.Organization>> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC")
         {
-            throw new NotImplementedException();
+            try
+            {
+                var @params = new DynamicParameters();
+                @params.Add("PageNumber", PageNumber, DbType.Int32);
+                @params.Add("RowsOfPage", RowsOfPage, DbType.Int32);
+                @params.Add("SortingCol", SortingCol, DbType.String);
+                @params.Add("SortType", SortType, DbType.String);
+
+                List<Domain.Organization> list = await Task.FromResult(GetAll<Domain.Organization>("[dbo].[Organization.GetPage]", @params, commandType: CommandType.StoredProcedure));
+                return list;
+            }
+            catch (Exception)
+            {
+                //Log
+                return null;
+            }
+        }
+
+        public async Task<int> Update(Domain.Organization organization)
+        {
+            try
+            {
+                var @params = new DynamicParameters();
+                @params.Add("Id", organization.Id, DbType.Guid);
+                @params.Add("SortingNumber", organization.SortingNumber, DbType.Int32);
+                @params.Add("PersianTitle", organization.PersianTitle, DbType.String);
+                @params.Add("ParentId", organization.ParentId, DbType.Guid);
+ 
+               var list = await Task.FromResult(Update<int>("[dbo].[Organization.Update]", @params, commandType: CommandType.StoredProcedure));
+                return list;
+            }
+            catch (Exception)
+            {
+                //Log
+                return 0;
+            }
         }
     }
 }

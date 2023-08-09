@@ -15,6 +15,7 @@ namespace KMS.Application.Services.AutoMapperService
         public OrganizationMapping()
         {
             CreateMap<OrganizationDto, Organization>().ReverseMap();
+          //  CreateMap(typeof(BaseEntity), typeof(BaseEntity) ).ReverseMap();
             //CreateMap<OrganizationDto, Organization>();
                 //.ForMember(dest => dest.HomePageSetting, opt => opt.Ignore())
                 //.ForMember(dest=>dest.Parent,opt=>opt.Ignore())

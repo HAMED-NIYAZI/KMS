@@ -10,10 +10,10 @@ namespace KMS.Data.Repositories.GenericEF
 {
     public class GenericEFRepository<T> : IGenericEFRepository<T> where T : BaseEntity
     {
-        private readonly KMSContext _context;
+        private readonly KMSContext context;
         public GenericEFRepository(KMSContext context)
         {
-            _context = context;
+            this.context = context;
         }
         public bool Add(T entity)
         {
@@ -21,41 +21,41 @@ namespace KMS.Data.Repositories.GenericEF
             entity.CreateDate = DateTime.Now;
             entity.LastUpdateDate = DateTime.Now;
 
-            _context.Add(entity);
-            _context.SaveChanges();
+            context.Add(entity);
+            context.SaveChanges();
             return true;
         }
 
         public bool Delete(T entity)
         {
-            _context.Remove(entity);
-            _context.SaveChanges();
+            context.Remove(entity);
+            context.SaveChanges();
             return true;
         }
 
         public bool DeleteById(T entity, Guid Id)
         {
-            _context.Remove(entity);
-            _context.SaveChanges();
+            context.Remove(entity);
+            context.SaveChanges();
             return true;
         }
 
         public IQueryable<T> GetAll()
         {
-            return _context.Set<T>();
+            return context.Set<T>();
         }
 
         public T? GetById(Guid id)
         {
-            return _context.Set<T>().FirstOrDefault(t => t.Id == id);
+            return context.Set<T>().FirstOrDefault(t => t.Id == id);
         }
 
         public bool Update(T entity)
         {
             if (entity.Id == Guid.Empty) return false;
             entity.LastUpdateDate = DateTime.Now;
-            _context.Update(entity);
-            _context.SaveChanges();
+            context.Update(entity);
+            context.SaveChanges();
             return true;
         }
 
