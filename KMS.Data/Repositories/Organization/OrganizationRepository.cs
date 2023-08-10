@@ -113,7 +113,7 @@ namespace KMS.Data.Repositories.Organization
             }
         }
 
-        public async Task<List<Domain.Organization>> GetAll()
+        public async Task<List<Domain.Organization>?> GetAll()
         {
             try
             {
@@ -129,7 +129,7 @@ namespace KMS.Data.Repositories.Organization
         }
 
 
-        public async Task<List<Domain.Organization>> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC")
+        public async Task<List<Domain.Organization>?> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC")
         {
             try
             {

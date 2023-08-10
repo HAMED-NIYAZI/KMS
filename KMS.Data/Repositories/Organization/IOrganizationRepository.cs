@@ -10,8 +10,8 @@ namespace KMS.Data.Repositories.Organization
 {
     public interface IOrganizationRepository
     {
-        Task<List<Domain.Organization>> GetAll();
-        Task<List<Domain.Organization>> GetPage(int PageNumber = 1, int RowsOfPage = 10,string SortingCol = "Id" ,string SortType= "ASC");
+        Task<List<Domain.Organization>?> GetAll();
+        Task<List<Domain.Organization>?> GetPage(int PageNumber = 1, int RowsOfPage = 10,string SortingCol = "Id" ,string SortType= "ASC");
         Task<Domain.Organization?> Get(Guid id);
         Task<Domain.Organization?> Get(string name);
         Task<int> Delete(Guid id);

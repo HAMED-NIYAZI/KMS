@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace KMS.Data.Repositories.GenericDapper
 {
+#nullable enable
+
     public class GenericDapperRepository : IGenericDapperRepository
     {
         private readonly IConfiguration config;

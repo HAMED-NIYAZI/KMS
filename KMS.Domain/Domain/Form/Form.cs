@@ -1,5 +1,6 @@
 ﻿namespace KMS.Domain
 {
+#nullable disable
     public class Form : BaseEntity
     {
         public int SortingNumber { get; set; }

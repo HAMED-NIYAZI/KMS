@@ -1,5 +1,6 @@
 ﻿namespace KMS.Domain
 {
+#nullable disable
     public class DateText 
     {
         public Guid Id { get; set; }

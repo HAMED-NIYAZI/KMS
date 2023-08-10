@@ -1,5 +1,7 @@
 ﻿namespace KMS.Domain
 {
+#nullable disable
+
     public class HomePageSetting : BaseEntity
     {
         public string Title { get; set; }

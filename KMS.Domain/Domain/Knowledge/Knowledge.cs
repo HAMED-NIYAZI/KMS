@@ -1,5 +1,7 @@
 ﻿namespace KMS.Domain
 {
+#nullable disable
+
     public class Knowledge : BaseEntity
     {
         public int Code { get; set; }

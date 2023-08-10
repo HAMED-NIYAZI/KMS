@@ -9,6 +9,10 @@
   <ItemGroup>
     <ProjectReference Include="..\KMS.Application\KMS.Application.csproj" />
     <ProjectReference Include="..\KMS.Data\KMS.Data.csproj" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
   </ItemGroup>
 
 </Project>

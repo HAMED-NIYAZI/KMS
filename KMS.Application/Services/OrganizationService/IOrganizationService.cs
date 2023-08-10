@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace KMS.Application.Services.OrganizationService
 {
+#nullable enable
+
+     
     public interface IOrganizationService
     {
         Task<List<OrganizationDto>> GetAll();

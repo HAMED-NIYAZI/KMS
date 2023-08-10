@@ -1,5 +1,7 @@
 ﻿namespace KMS.Domain
 {
+#nullable disable
+
     public class ShortTest
     {
         public Guid Id { get; set; }

@@ -97,7 +97,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Organization.GetPage](
+create PROCEDURE [dbo].[Organization.GetPage](
   @PageNumber  INT,
   @RowsOfPage  INT,
   @SortingCol  NVARCHAR(100),
@@ -124,7 +124,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Organization.GetByName](
+create PROCEDURE [dbo].[Organization.GetByName](
 @PersianTitle  NVARCHAR(MAX))
 AS
 BEGIN
@@ -140,7 +140,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Organization.GetById](
+create PROCEDURE [dbo].[Organization.GetById](
 @Id UNIQUEIDENTIFIER)
 AS
 BEGIN
@@ -156,7 +156,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Organization.GetAll] 
+create PROCEDURE [dbo].[Organization.GetAll] 
 AS
 BEGIN
   	SET NOCOUNT ON;
@@ -171,7 +171,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Organization.DeleteByName](
+create PROCEDURE [dbo].[Organization.DeleteByName](
 @PersianTitle NVARCHAR(MAX))
 AS
 BEGIN
@@ -188,7 +188,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Organization.DeleteById](
+create PROCEDURE [dbo].[Organization.DeleteById](
 @Id UNIQUEIDENTIFIER)
 AS
 BEGIN
@@ -206,7 +206,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Organization.Count]
+create PROCEDURE [dbo].[Organization.Count]
 AS
 BEGIN
   	SET NOCOUNT ON;
@@ -215,6 +215,11 @@ END
 
  -------------------------------------
  -------------------------------------
+
+
+
+
+
 
 
 ";

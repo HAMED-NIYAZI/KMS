@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace KMSUI.Controllers
 {
-    public class HomeController : Controller
+    public class OrganizationController : Controller
     {
-        public IActionResult Index()
+        public IActionResult OrganizationList()
         {
             return View();
         }

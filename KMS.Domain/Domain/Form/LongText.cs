@@ -1,5 +1,7 @@
 ﻿namespace KMS.Domain
 {
+#nullable disable
+
     public class LongText
     {
         public Guid Id { get; set; }

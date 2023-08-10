@@ -37,7 +37,7 @@ namespace KMS.Data.Migrations
                     b.Property<string>("EnglishTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastUpdateDate")
@@ -70,7 +70,6 @@ namespace KMS.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("FormId")
@@ -80,7 +79,6 @@ namespace KMS.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -103,7 +101,6 @@ namespace KMS.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ValueText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -159,7 +156,7 @@ namespace KMS.Data.Migrations
                     b.Property<int>("FormTypeId")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastUpdateDate")
@@ -214,7 +211,7 @@ namespace KMS.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastUpdateDate")
@@ -254,7 +251,7 @@ namespace KMS.Data.Migrations
                     b.Property<Guid>("FormId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<Guid>("KnowledgeFieldId")
@@ -323,7 +320,7 @@ namespace KMS.Data.Migrations
                     b.Property<string>("EnglishTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastUpdateDate")
@@ -420,7 +417,6 @@ namespace KMS.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CodeMeli")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("ConfirmedEmail")
@@ -444,7 +440,7 @@ namespace KMS.Data.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
