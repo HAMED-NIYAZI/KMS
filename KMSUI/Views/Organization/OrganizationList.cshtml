@@ -1,4 +1,19 @@
 ﻿@model OrganizationAddViewModel
+
+
+
+
+
+@section Styles{
+	<!-- styles -->
+@*	<link href="~/assets/plugins/icons/icons.css" rel="stylesheet" type="text/css" />
+	<link href="~/assets/plugins/treeview/treeview-rtl.css" rel="stylesheet" type="text/css" />*@
+	}
+
+
+
+
+
 <div class="row  justify-content-center mt-4">
     <div class="col-lg-8 col-xl-8 col-md-10 col-12">
         <div class="card  box-shadow-0">
@@ -15,7 +30,7 @@
                         <input asp-for="ParentId" class="form-control"   placeholder="سرشاخه">
                     </div>
                     <div>
-						<div class="col-lg-4">
+						<div class="col-12">
 							<ul id="tree1" class="tree">
 								<li class="branch">
 									<i class="si si si-plus"></i><a href="#">نمای درختی</a>
@@ -301,7 +316,9 @@
 								</li>
 							</ul>
 						</div>
-                    </div>
+
+			
+					</div>
                     <div class="form-group">
                         <input asp-for="SortingNumber" class="form-control" placeholder="ترتیب نمایش">
                     </div>
@@ -322,3 +339,19 @@
         </div>
     </div>
 </div>
+
+@*
+@section Scripts{
+	<script src="/assets/plugins/treeview/treeview.js"></script>
+
+}*@
+
+@section ScriptsTreeOrganization{
+
+@*	<script src="/assets/plugins/jquery/jquery.min.js"></script>
+*@	@*<script src="/assets/plugins/jquery/jquery-3.7.0.js"></script>*@
+
+	<script src="/assets/plugins/treeview/treeview.js"></script>
+
+
+}

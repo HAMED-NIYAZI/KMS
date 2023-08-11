@@ -15,6 +15,9 @@
     <!-- Title -->
     <title>@ViewData["Title"] - KmsUIRazor</title>
     <partial name="_SiteHeaderRefrencePartial" />
+    @await RenderSectionAsync("Styles", required: false)
+
+
 </head>
 
 <body class="main-body app sidebar-mini">
@@ -58,9 +61,13 @@
     <!-- scripts -->
     <!-- Back-to-top -->
     <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
+    @await RenderSectionAsync("ScriptsTreeOrganization", required: false)
+
     <partial name="_SiteFooterRefrencePartial" />
     <partial name="_AlertsPartial" />
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
 
