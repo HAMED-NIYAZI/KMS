@@ -20,9 +20,6 @@ namespace KMSUI.Controllers
         }
 
 
-		public IActionResult OrganizationList2()
-		{
-			return View();
-		}
+
 	}
 }
