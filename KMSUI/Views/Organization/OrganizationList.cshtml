@@ -1,13 +1,16 @@
-﻿@model OrganizationAddViewModel
+﻿@using KMS.Application.Dtos.OrganizationDto;
+@model OrganizationAddViewModel
 
-
+@{
+    var OrganizationTrees = (List<OrganizationTree>)ViewBag.OrganizationTree;
+}
 
 
 
 @section Styles{
-		<link href="/assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
 
-	<link href="/assets/plugins/treeview/treeview-rtl.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/plugins/treeview/treeview-rtl.css" rel="stylesheet" type="text/css" />
  	}
 
 
@@ -27,314 +30,42 @@
                         <input asp-for="PersianTitle" class="form-control" placeholder="نام سازمان">
                     </div>
                     <div class="form-group">
-                        <input asp-for="ParentId" class="form-control"   placeholder="سرشاخه">
+                        <input asp-for="ParentId" id="ParentId_Organization" class="form-control" placeholder="سرشاخه" >
                     </div>
                     <div>
-						<div class="col-md-12">
-					
-							<div class="card">
-								<div class="card-body">
-									<div class="main-content-label mg-b-5">
-										سبک های نمایش درخت
-									</div>
-									<p class="mg-b-20">سفارشی سازی آن بسیار آسان است و از آن در پیاده سازی وب سایت استفاده می شود.</p>
-									<div class="row">
-										<!-- col -->
-										<div class="col-12">
-											<ul id="tree1">
-												<li>
-													<a href="#">نمای درختی</a>
-													<ul>
-														<li>تعمیر و نگهداری شرکت</li>
-														<li>
-															کارمندان
-															<ul>
-																<li>
-																	گزارش ها
-																	<ul>
-																		<li>گزارش 1</li>
-																		<li>گزارش 2</li>
-																		<li>گزارش 3</li>
-																	</ul>
-																</li>
-																<li>
-																	کارمند ماین
-																	<ul>
-																		<li>
-																			گزارش ها
-																			<ul>
-																				<li>گزارش 1</li>
-																				<li>گزارش 2</li>
-																				<li>گزارش 3</li>
-																			</ul>
-																		</li>
-																		<li>
-																			کارمند ماین
-																			<ul>
-																				<li>
-																					گزارش ها
-																					<ul>
-																						<li>گزارش 1</li>
-																						<li>گزارش 2</li>
-																						<li>گزارش 3</li>
-																					</ul>
-																				</li>
-																				<li>کارمند ماین</li>
-																			</ul>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-														<li>منابع انسانی</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">نمای درختی</a>
-													<ul>
-														<li>تعمیر و نگهداری شرکت</li>
-														<li>
-															کارمندان
-															<ul>
-																<li>
-																	گزارش ها
-																	<ul>
-																		<li>گزارش 1</li>
-																		<li>گزارش 2</li>
-																		<li>گزارش 3</li>
-																	</ul>
-																</li>
-																<li>
-																	کارمند ماین
-																	<ul>
-																		<li>
-																			گزارش ها
-																			<ul>
-																				<li>گزارش 1</li>
-																				<li>گزارش 2</li>
-																				<li>گزارش 3</li>
-																			</ul>
-																		</li>
-																		<li>
-																			کارمند ماین
-																			<ul>
-																				<li>
-																					گزارش ها
-																					<ul>
-																						<li>گزارش 1</li>
-																						<li>گزارش 2</li>
-																						<li>گزارش 3</li>
-																					</ul>
-																				</li>
-																				<li>کارمند ماین</li>
-																			</ul>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-														<li>منابع انسانی</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">درخت 3</a>
-													<ul>
-														<li>تعمیر و نگهداری شرکت</li>
-														<li>
-															کارمندان
-															<ul>
-																<li>
-																	گزارش ها
-																	<ul>
-																		<li>گزارش 1</li>
-																		<li>گزارش 2</li>
-																		<li>گزارش 3</li>
-																	</ul>
-																</li>
-																<li>
-																	کارمند ماین
-																	<ul>
-																		<li>
-																			گزارش ها
-																			<ul>
-																				<li>گزارش 1</li>
-																				<li>گزارش 2</li>
-																				<li>گزارش 3</li>
-																			</ul>
-																		</li>
-																		<li>
-																			کارمند ماین
-																			<ul>
-																				<li>
-																					گزارش ها
-																					<ul>
-																						<li>گزارش 1</li>
-																						<li>گزارش 2</li>
-																						<li>گزارش 3</li>
-																					</ul>
-																				</li>
-																				<li>کارمند ماین</li>
-																			</ul>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-														<li>منابع انسانی</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">نمای درختی</a>
-													<ul>
-														<li>تعمیر و نگهداری شرکت</li>
-														<li>
-															کارمندان
-															<ul>
-																<li>
-																	گزارش ها
-																	<ul>
-																		<li>گزارش 1</li>
-																		<li>گزارش 2</li>
-																		<li>گزارش 3</li>
-																	</ul>
-																</li>
-																<li>
-																	کارمند ماین
-																	<ul>
-																		<li>
-																			گزارش ها
-																			<ul>
-																				<li>گزارش 1</li>
-																				<li>گزارش 2</li>
-																				<li>گزارش 3</li>
-																			</ul>
-																		</li>
-																		<li>
-																			کارمند ماین
-																			<ul>
-																				<li>
-																					گزارش ها
-																					<ul>
-																						<li>گزارش 1</li>
-																						<li>گزارش 2</li>
-																						<li>گزارش 3</li>
-																					</ul>
-																				</li>
-																				<li>کارمند ماین</li>
-																			</ul>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-														<li>منابع انسانی</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">نمای درختی</a>
-													<ul>
-														<li>تعمیر و نگهداری شرکت</li>
-														<li>
-															کارمندان
-															<ul>
-																<li>
-																	گزارش ها
-																	<ul>
-																		<li>گزارش 1</li>
-																		<li>گزارش 2</li>
-																		<li>گزارش 3</li>
-																	</ul>
-																</li>
-																<li>
-																	کارمند ماین
-																	<ul>
-																		<li>
-																			گزارش ها
-																			<ul>
-																				<li>گزارش 1</li>
-																				<li>گزارش 2</li>
-																				<li>گزارش 3</li>
-																			</ul>
-																		</li>
-																		<li>
-																			کارمند ماین
-																			<ul>
-																				<li>
-																					گزارش ها
-																					<ul>
-																						<li>گزارش 1</li>
-																						<li>گزارش 2</li>
-																						<li>گزارش 3</li>
-																					</ul>
-																				</li>
-																				<li>کارمند ماین</li>
-																			</ul>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-														<li>منابع انسانی</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">درخت 6</a>
-													<ul>
-														<li>تعمیر و نگهداری شرکت</li>
-														<li>
-															کارمندان
-															<ul>
-																<li>
-																	گزارش ها
-																	<ul>
-																		<li>گزارش 1</li>
-																		<li>گزارش 2</li>
-																		<li>گزارش 3</li>
-																	</ul>
-																</li>
-																<li>
-																	کارمند ماین
-																	<ul>
-																		<li>
-																			گزارش ها
-																			<ul>
-																				<li>گزارش 1</li>
-																				<li>گزارش 2</li>
-																				<li>گزارش 3</li>
-																			</ul>
-																		</li>
-																		<li>
-																			کارمند ماین
-																			<ul>
-																				<li>
-																					گزارش ها
-																					<ul>
-																						<li>گزارش 1</li>
-																						<li>گزارش 2</li>
-																						<li>گزارش 3</li>
-																					</ul>
-																				</li>
-																				<li>کارمند ماین</li>
-																			</ul>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-														<li>منابع انسانی</li>
-													</ul>
-												</li>
-											</ul>
-										</div>
-										<!-- /col -->
-					
-									</div>
-								</div>
-							</div>
-						</div>
+                        <div class="col-md-12">
 
-			
-					</div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="main-content-label mg-b-5">
+                                        سبک های نمایش درخت
+                                    </div>
+                                    <p class="mg-b-20">سفارشی سازی آن بسیار آسان است و از آن در پیاده سازی وب سایت استفاده می شود.</p>
+                                    <div class="row">
+                                        <!-- col -->
+                                        <div class="col-12">
+                                            <ul id="tree1">
+                                                @{
+                                                    @if (OrganizationTrees != null && OrganizationTrees.Count > 0)
+                                                    {
+                                                        foreach (var item in OrganizationTrees)@*LEVEL 1*@
+                                                        {
+                                                            <partial name="_TreePartial" model="item" />
+                                                        }
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <!-- /col -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
                     <div class="form-group">
                         <input asp-for="SortingNumber" class="form-control" placeholder="ترتیب نمایش">
                     </div>
@@ -346,20 +77,26 @@
                             <button type="submit" class="btn btn-secondary">لغو</button>
                         </div>
                     </div>
-                        <div class="text-center">
-        <button type="submit" class="btn btn-primary  margin-left-10px">ذخیره</button>
-        <button type="reset" class="btn btn-secondary  margin-left-10px">بازنشانی</button>
-    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary  margin-left-10px">ذخیره</button>
+                        <button type="reset" class="btn btn-secondary  margin-left-10px">بازنشانی</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
- 
+
 
 @section Scripts{
- 
-		<script src="/assets/plugins/treeview/treeview.js"></script>
 
+    <script src="/assets/plugins/treeview/treeview.js"></script>
+    <script type="text/javascript">
+        function AssignToTextBox() {
+            debugger;
+            console.log(document.getElementById("ParentId_Organization").textContent);
+            document.getElementById("ParentId_Organization").innerHTML = "Hello World";
+        }
+    </script>
 }

@@ -1,0 +1,29 @@
+﻿@using KMS.Application.Dtos.OrganizationDto;
+@model OrganizationTree
+
+
+@*
+
+این پارشیال برای نمایش سازمان ها ساخته شده است
+
+*@
+@if (Model.Children.Count > 0)
+{
+    <li id="@Model.Id" onclick="AssignToTextBox()">
+        <a style="margin-right: -3px;" href="#">@Model.PersianTitle</a>
+        <ul>
+            @foreach (var item in Model.Children)@*LEVEL 3*@
+            {
+                <partial name="_TreePartial" model="item" />
+            }
+
+        </ul>
+    </li>
+}
+else
+{
+
+    <li style="padding-right:17px;" id="@Model.Id" onclick="AssignToTextBox()">@Model.PersianTitle</li>
+    
+}
+

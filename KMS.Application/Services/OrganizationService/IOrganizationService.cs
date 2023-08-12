@@ -21,5 +21,10 @@ namespace KMS.Application.Services.OrganizationService
         Task<int> Delete(string name);
         Task<int> Update(OrganizationDto organization);
         Task<int> Add(OrganizationDto organization);
-    }
+
+
+		Task<List<OrganizationTree>?> GetOrganizationTree();
+ 
+
+	}
 }
