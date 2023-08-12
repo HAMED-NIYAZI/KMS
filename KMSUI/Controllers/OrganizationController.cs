@@ -8,5 +8,11 @@ namespace KMSUI.Controllers
         {
             return View();
         }
-    }
+
+
+		public IActionResult OrganizationList2()
+		{
+			return View();
+		}
+	}
 }
