@@ -5,10 +5,10 @@
 
 
 @section Styles{
-	<!-- styles -->
-@*	<link href="~/assets/plugins/icons/icons.css" rel="stylesheet" type="text/css" />
-	<link href="~/assets/plugins/treeview/treeview-rtl.css" rel="stylesheet" type="text/css" />*@
-	}
+		<link href="/assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+	<link href="/assets/plugins/treeview/treeview-rtl.css" rel="stylesheet" type="text/css" />
+ 	}
 
 
 
@@ -30,291 +30,307 @@
                         <input asp-for="ParentId" class="form-control"   placeholder="سرشاخه">
                     </div>
                     <div>
-						<div class="col-12">
-							<ul id="tree1" class="tree">
-								<li class="branch">
-									<i class="si si si-plus"></i><a href="#">نمای درختی</a>
-									<ul>
-										<li style="display: none;">تعمیر و نگهداری شرکت</li>
-										<li class="branch" style="display: none;">
-											<i class="si si si-plus"></i>کارمندان
-											<ul>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>گزارش ها
+						<div class="col-md-12">
+					
+							<div class="card">
+								<div class="card-body">
+									<div class="main-content-label mg-b-5">
+										سبک های نمایش درخت
+									</div>
+									<p class="mg-b-20">سفارشی سازی آن بسیار آسان است و از آن در پیاده سازی وب سایت استفاده می شود.</p>
+									<div class="row">
+										<!-- col -->
+										<div class="col-12">
+											<ul id="tree1">
+												<li>
+													<a href="#">نمای درختی</a>
 													<ul>
-														<li style="display: none;">گزارش 1</li>
-														<li style="display: none;">گزارش 2</li>
-														<li style="display: none;">گزارش 3</li>
-													</ul>
-												</li>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>کارمند ماین
-													<ul>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>گزارش ها
+														<li>تعمیر و نگهداری شرکت</li>
+														<li>
+															کارمندان
 															<ul>
-																<li style="display: none;">گزارش 1</li>
-																<li style="display: none;">گزارش 2</li>
-																<li style="display: none;">گزارش 3</li>
-															</ul>
-														</li>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>کارمند ماین
-															<ul>
-																<li class="branch" style="display: none;">
-																	<i class="si si si-plus"></i>گزارش ها
+																<li>
+																	گزارش ها
 																	<ul>
-																		<li style="display: none;">گزارش 1</li>
-																		<li style="display: none;">گزارش 2</li>
-																		<li style="display: none;">گزارش 3</li>
+																		<li>گزارش 1</li>
+																		<li>گزارش 2</li>
+																		<li>گزارش 3</li>
 																	</ul>
 																</li>
-																<li style="display: none;">کارمند ماین</li>
+																<li>
+																	کارمند ماین
+																	<ul>
+																		<li>
+																			گزارش ها
+																			<ul>
+																				<li>گزارش 1</li>
+																				<li>گزارش 2</li>
+																				<li>گزارش 3</li>
+																			</ul>
+																		</li>
+																		<li>
+																			کارمند ماین
+																			<ul>
+																				<li>
+																					گزارش ها
+																					<ul>
+																						<li>گزارش 1</li>
+																						<li>گزارش 2</li>
+																						<li>گزارش 3</li>
+																					</ul>
+																				</li>
+																				<li>کارمند ماین</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</li>
 															</ul>
 														</li>
+														<li>منابع انسانی</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">نمای درختی</a>
+													<ul>
+														<li>تعمیر و نگهداری شرکت</li>
+														<li>
+															کارمندان
+															<ul>
+																<li>
+																	گزارش ها
+																	<ul>
+																		<li>گزارش 1</li>
+																		<li>گزارش 2</li>
+																		<li>گزارش 3</li>
+																	</ul>
+																</li>
+																<li>
+																	کارمند ماین
+																	<ul>
+																		<li>
+																			گزارش ها
+																			<ul>
+																				<li>گزارش 1</li>
+																				<li>گزارش 2</li>
+																				<li>گزارش 3</li>
+																			</ul>
+																		</li>
+																		<li>
+																			کارمند ماین
+																			<ul>
+																				<li>
+																					گزارش ها
+																					<ul>
+																						<li>گزارش 1</li>
+																						<li>گزارش 2</li>
+																						<li>گزارش 3</li>
+																					</ul>
+																				</li>
+																				<li>کارمند ماین</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+														<li>منابع انسانی</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">درخت 3</a>
+													<ul>
+														<li>تعمیر و نگهداری شرکت</li>
+														<li>
+															کارمندان
+															<ul>
+																<li>
+																	گزارش ها
+																	<ul>
+																		<li>گزارش 1</li>
+																		<li>گزارش 2</li>
+																		<li>گزارش 3</li>
+																	</ul>
+																</li>
+																<li>
+																	کارمند ماین
+																	<ul>
+																		<li>
+																			گزارش ها
+																			<ul>
+																				<li>گزارش 1</li>
+																				<li>گزارش 2</li>
+																				<li>گزارش 3</li>
+																			</ul>
+																		</li>
+																		<li>
+																			کارمند ماین
+																			<ul>
+																				<li>
+																					گزارش ها
+																					<ul>
+																						<li>گزارش 1</li>
+																						<li>گزارش 2</li>
+																						<li>گزارش 3</li>
+																					</ul>
+																				</li>
+																				<li>کارمند ماین</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+														<li>منابع انسانی</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">نمای درختی</a>
+													<ul>
+														<li>تعمیر و نگهداری شرکت</li>
+														<li>
+															کارمندان
+															<ul>
+																<li>
+																	گزارش ها
+																	<ul>
+																		<li>گزارش 1</li>
+																		<li>گزارش 2</li>
+																		<li>گزارش 3</li>
+																	</ul>
+																</li>
+																<li>
+																	کارمند ماین
+																	<ul>
+																		<li>
+																			گزارش ها
+																			<ul>
+																				<li>گزارش 1</li>
+																				<li>گزارش 2</li>
+																				<li>گزارش 3</li>
+																			</ul>
+																		</li>
+																		<li>
+																			کارمند ماین
+																			<ul>
+																				<li>
+																					گزارش ها
+																					<ul>
+																						<li>گزارش 1</li>
+																						<li>گزارش 2</li>
+																						<li>گزارش 3</li>
+																					</ul>
+																				</li>
+																				<li>کارمند ماین</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+														<li>منابع انسانی</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">نمای درختی</a>
+													<ul>
+														<li>تعمیر و نگهداری شرکت</li>
+														<li>
+															کارمندان
+															<ul>
+																<li>
+																	گزارش ها
+																	<ul>
+																		<li>گزارش 1</li>
+																		<li>گزارش 2</li>
+																		<li>گزارش 3</li>
+																	</ul>
+																</li>
+																<li>
+																	کارمند ماین
+																	<ul>
+																		<li>
+																			گزارش ها
+																			<ul>
+																				<li>گزارش 1</li>
+																				<li>گزارش 2</li>
+																				<li>گزارش 3</li>
+																			</ul>
+																		</li>
+																		<li>
+																			کارمند ماین
+																			<ul>
+																				<li>
+																					گزارش ها
+																					<ul>
+																						<li>گزارش 1</li>
+																						<li>گزارش 2</li>
+																						<li>گزارش 3</li>
+																					</ul>
+																				</li>
+																				<li>کارمند ماین</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+														<li>منابع انسانی</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">درخت 6</a>
+													<ul>
+														<li>تعمیر و نگهداری شرکت</li>
+														<li>
+															کارمندان
+															<ul>
+																<li>
+																	گزارش ها
+																	<ul>
+																		<li>گزارش 1</li>
+																		<li>گزارش 2</li>
+																		<li>گزارش 3</li>
+																	</ul>
+																</li>
+																<li>
+																	کارمند ماین
+																	<ul>
+																		<li>
+																			گزارش ها
+																			<ul>
+																				<li>گزارش 1</li>
+																				<li>گزارش 2</li>
+																				<li>گزارش 3</li>
+																			</ul>
+																		</li>
+																		<li>
+																			کارمند ماین
+																			<ul>
+																				<li>
+																					گزارش ها
+																					<ul>
+																						<li>گزارش 1</li>
+																						<li>گزارش 2</li>
+																						<li>گزارش 3</li>
+																					</ul>
+																				</li>
+																				<li>کارمند ماین</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+														<li>منابع انسانی</li>
 													</ul>
 												</li>
 											</ul>
-										</li>
-										<li style="display: none;">منابع انسانی</li>
-									</ul>
-								</li>
-								<li class="branch">
-									<i class="si si si-plus"></i><a href="#">نمای درختی</a>
-									<ul>
-										<li style="display: none;">تعمیر و نگهداری شرکت</li>
-										<li class="branch" style="display: none;">
-											<i class="si si si-plus"></i>کارمندان
-											<ul>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>گزارش ها
-													<ul>
-														<li style="display: none;">گزارش 1</li>
-														<li style="display: none;">گزارش 2</li>
-														<li style="display: none;">گزارش 3</li>
-													</ul>
-												</li>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>کارمند ماین
-													<ul>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>گزارش ها
-															<ul>
-																<li style="display: none;">گزارش 1</li>
-																<li style="display: none;">گزارش 2</li>
-																<li style="display: none;">گزارش 3</li>
-															</ul>
-														</li>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>کارمند ماین
-															<ul>
-																<li class="branch" style="display: none;">
-																	<i class="si si si-plus"></i>گزارش ها
-																	<ul>
-																		<li style="display: none;">گزارش 1</li>
-																		<li style="display: none;">گزارش 2</li>
-																		<li style="display: none;">گزارش 3</li>
-																	</ul>
-																</li>
-																<li style="display: none;">کارمند ماین</li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-										<li style="display: none;">منابع انسانی</li>
-									</ul>
-								</li>
-								<li class="branch">
-									<i class="si si si-plus"></i><a href="#">درخت 3</a>
-									<ul>
-										<li style="display: none;">تعمیر و نگهداری شرکت</li>
-										<li class="branch" style="display: none;">
-											<i class="si si si-plus"></i>کارمندان
-											<ul>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>گزارش ها
-													<ul>
-														<li style="display: none;">گزارش 1</li>
-														<li style="display: none;">گزارش 2</li>
-														<li style="display: none;">گزارش 3</li>
-													</ul>
-												</li>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>کارمند ماین
-													<ul>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>گزارش ها
-															<ul>
-																<li style="display: none;">گزارش 1</li>
-																<li style="display: none;">گزارش 2</li>
-																<li style="display: none;">گزارش 3</li>
-															</ul>
-														</li>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>کارمند ماین
-															<ul>
-																<li class="branch" style="display: none;">
-																	<i class="si si si-plus"></i>گزارش ها
-																	<ul>
-																		<li style="display: none;">گزارش 1</li>
-																		<li style="display: none;">گزارش 2</li>
-																		<li style="display: none;">گزارش 3</li>
-																	</ul>
-																</li>
-																<li style="display: none;">کارمند ماین</li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-										<li style="display: none;">منابع انسانی</li>
-									</ul>
-								</li>
-								<li class="branch">
-									<i class="si si si-plus"></i><a href="#">نمای درختی</a>
-									<ul>
-										<li style="display: none;">تعمیر و نگهداری شرکت</li>
-										<li class="branch" style="display: none;">
-											<i class="si si si-plus"></i>کارمندان
-											<ul>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>گزارش ها
-													<ul>
-														<li style="display: none;">گزارش 1</li>
-														<li style="display: none;">گزارش 2</li>
-														<li style="display: none;">گزارش 3</li>
-													</ul>
-												</li>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>کارمند ماین
-													<ul>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>گزارش ها
-															<ul>
-																<li style="display: none;">گزارش 1</li>
-																<li style="display: none;">گزارش 2</li>
-																<li style="display: none;">گزارش 3</li>
-															</ul>
-														</li>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>کارمند ماین
-															<ul>
-																<li class="branch" style="display: none;">
-																	<i class="si si si-plus"></i>گزارش ها
-																	<ul>
-																		<li style="display: none;">گزارش 1</li>
-																		<li style="display: none;">گزارش 2</li>
-																		<li style="display: none;">گزارش 3</li>
-																	</ul>
-																</li>
-																<li style="display: none;">کارمند ماین</li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-										<li style="display: none;">منابع انسانی</li>
-									</ul>
-								</li>
-								<li class="branch">
-									<i class="si si si-plus"></i><a href="#">نمای درختی</a>
-									<ul>
-										<li style="display: none;">تعمیر و نگهداری شرکت</li>
-										<li class="branch" style="display: none;">
-											<i class="si si si-plus"></i>کارمندان
-											<ul>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>گزارش ها
-													<ul>
-														<li style="display: none;">گزارش 1</li>
-														<li style="display: none;">گزارش 2</li>
-														<li style="display: none;">گزارش 3</li>
-													</ul>
-												</li>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>کارمند ماین
-													<ul>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>گزارش ها
-															<ul>
-																<li style="display: none;">گزارش 1</li>
-																<li style="display: none;">گزارش 2</li>
-																<li style="display: none;">گزارش 3</li>
-															</ul>
-														</li>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>کارمند ماین
-															<ul>
-																<li class="branch" style="display: none;">
-																	<i class="si si si-plus"></i>گزارش ها
-																	<ul>
-																		<li style="display: none;">گزارش 1</li>
-																		<li style="display: none;">گزارش 2</li>
-																		<li style="display: none;">گزارش 3</li>
-																	</ul>
-																</li>
-																<li style="display: none;">کارمند ماین</li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-										<li style="display: none;">منابع انسانی</li>
-									</ul>
-								</li>
-								<li class="branch">
-									<i class="si si-plus"></i><a href="#">درخت 6</a>
-									<ul>
-										<li style="display: none;">تعمیر و نگهداری شرکت</li>
-										<li class="branch" style="display: none;">
-											<i class="si si si-plus"></i>کارمندان
-											<ul>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>گزارش ها
-													<ul>
-														<li style="display: none;">گزارش 1</li>
-														<li style="display: none;">گزارش 2</li>
-														<li style="display: none;">گزارش 3</li>
-													</ul>
-												</li>
-												<li class="branch" style="display: none;">
-													<i class="si si si-plus"></i>کارمند ماین
-													<ul>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>گزارش ها
-															<ul>
-																<li style="display: none;">گزارش 1</li>
-																<li style="display: none;">گزارش 2</li>
-																<li style="display: none;">گزارش 3</li>
-															</ul>
-														</li>
-														<li class="branch" style="display: none;">
-															<i class="si si si-plus"></i>کارمند ماین
-															<ul>
-																<li class="branch" style="display: none;">
-																	<i class="si si si-plus"></i>گزارش ها
-																	<ul>
-																		<li style="display: none;">گزارش 1</li>
-																		<li style="display: none;">گزارش 2</li>
-																		<li style="display: none;">گزارش 3</li>
-																	</ul>
-																</li>
-																<li style="display: none;">کارمند ماین</li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-										<li style="display: none;">منابع انسانی</li>
-									</ul>
-								</li>
-							</ul>
+										</div>
+										<!-- /col -->
+					
+									</div>
+								</div>
+							</div>
 						</div>
 
 			
@@ -340,18 +356,10 @@
     </div>
 </div>
 
-@*
+ 
+
 @section Scripts{
-	<script src="/assets/plugins/treeview/treeview.js"></script>
-
-}*@
-
-@section ScriptsTreeOrganization{
-
-@*	<script src="/assets/plugins/jquery/jquery.min.js"></script>
-*@	@*<script src="/assets/plugins/jquery/jquery-3.7.0.js"></script>*@
-
-	<script src="/assets/plugins/treeview/treeview.js"></script>
-
+ 
+		<script src="/assets/plugins/treeview/treeview.js"></script>
 
 }
