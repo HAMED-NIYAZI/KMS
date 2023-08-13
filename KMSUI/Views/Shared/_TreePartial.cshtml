@@ -7,23 +7,24 @@
 این پارشیال برای نمایش سازمان ها ساخته شده است
 
 *@
+@{
+    var I = Model.Id.ToString()+Model.PersianTitle;
+}
 @if (Model.Children.Count > 0)
 {
-    <li id="@Model.Id" onclick="AssignToTextBox(this)">
-        <a style="margin-right: -3px;" href="#">@Model.PersianTitle</a>
+    <li >
+        <a style="margin-right: -3px;" id="@I" lang="fa" onclick="AssignToTextBox(event)">@(Model.PersianTitle)</a>
         <ul>
             @foreach (var item in Model.Children)@*LEVEL 3*@
             {
                 <partial name="_TreePartial" model="item" />
             }
-
         </ul>
     </li>
 }
 else
 {
-
-    <li style="padding-right:17px;" id="@Model.Id" onclick="AssignToTextBox(this)">@Model.PersianTitle</li>
+    <li style="padding-right:17px;" lang="fa" id="@I" onclick="AssignToTextBox(event)">@(Model.PersianTitle)</li>
     
 }
 

@@ -29,9 +29,8 @@
                         <input asp-for="PersianTitle" class="form-control" placeholder="نام سازمان">
                     </div>
                     <div class="form-group">
-                        <input   id="ParentIdOrganization2" class="form-control" >
-                        <label id="ParentIdOrganization" class="form-control" ></label>
-                     </div>
+                        <input id="ParentIdOrganization" class="form-control">
+                      </div>
                     <div>
                         <div class="col-md-12">
 
@@ -93,8 +92,15 @@
 
     <script src="/assets/plugins/treeview/treeview.js"></script>
     <script type="text/javascript">
-        function AssignToTextBox(object) {
-                 document.getElementById("ParentIdOrganization").value=  "212121" ;
-        };
+        function AssignToTextBox(e) {
+
+             if (e.currentTarget.id!="")
+                document.getElementById("ParentIdOrganization").value = e.currentTarget.id;
+
+          else
+
+                          document.getElementById("ParentIdOrganization").value = e.target.id;
+
+         };
     </script>
 }
