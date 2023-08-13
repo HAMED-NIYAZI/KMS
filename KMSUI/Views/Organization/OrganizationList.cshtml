@@ -95,11 +95,18 @@
         function AssignToTextBox(e) {
 
              if (e.currentTarget.id!="")
+             {
                 document.getElementById("ParentIdOrganization").value = e.currentTarget.id;
 
-          else
+                
+             }
 
-                          document.getElementById("ParentIdOrganization").value = e.target.id;
+          else
+          {
+                document.getElementById("ParentIdOrganization").value = e.target.id;
+
+          }
+
 
          };
     </script>
