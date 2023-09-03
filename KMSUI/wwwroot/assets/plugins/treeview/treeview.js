@@ -68,6 +68,14 @@ $('#treeview3').treed();
 
 $('#tree1').treed();
 
+
 $('#tree2').treed({openedClass:'si si-folder-alt', closedClass:'si si-folder'});
 
-$('#tree3').treed({openedClass:'si si-arrow-right-circle', closedClass:'si si-arrow-down-circle'});
+$('#tree3').treed({ openedClass: 'si si-arrow-right-circle', closedClass: 'si si-arrow-down-circle' });
+
+ $('#tree5').treed();
+$('#tree6').treed();
+$('#tree7').treed();
+$('#tree8').treed();
+$('#tree9').treed();
+$('#tree10').treed();
