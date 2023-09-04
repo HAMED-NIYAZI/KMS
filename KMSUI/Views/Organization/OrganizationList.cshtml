@@ -37,13 +37,13 @@
                         <input   id="ParentIdOrganizationId" class="form-control" hidden >
                       </div>
                     <div>
-
+ 
                         <div class="col-md-12">
 
                             <div class="card">
                                 <div class="card-body">
               
-                                    <p class="mg-b-20">انتخاب سرشاخه:</p>
+                                    <p class="mg-b-20">انتخاب سرشاخه: <span onclick="ClearAllSingle()"><img width="15" height="15" style="cursor:pointer;" src="~/Images/Icon/loading-arrow.png" /></span></p>
                                     <div class="row">
                                          <div class="col-12" style="margin: -1px -12px -5px 0px;">
                                             <ul id="tree5">
@@ -65,33 +65,26 @@
                             </div>
                         </div>
  
-
-                        <div class="col-md-12">
+ 
+           @*             <div class="col-md-12">
 
                             <div class="card">
                                 <div class="card-body">
-                                    @*        <div class="main-content-label mg-b-5">
-                                    سبک های نمایش درخت
-                                    </div>*@
-                                    <p class="mg-b-20">انتخاب سرشاخه: <span onclick="ClearAll()"><img width="15" height="15" style="cursor:pointer;" src="~/Images/Icon/loading-arrow.png" /></span></p>
+                                    <p class="mg-b-20"> چند تایی انتخاب سرشاخه: <span onclick="ClearAllMul()"><img width="15" height="15" style="cursor:pointer;" src="~/Images/Icon/loading-arrow.png" /></span></p>
                                     <div class="row">
-                                        <!-- col -->
                                         <div class="col-12" style="margin: -1px -12px -5px 0px;">
                                             <ul id="tree6">
                                                 @{
                                                     @if (OrganizationTrees != null && OrganizationTrees.Count > 0)
                                                     {
-                                                        foreach (var item in OrganizationTrees)@*LEVEL 1*@
+                                                        foreach (var item in OrganizationTrees)
                                                         {
                                                             <partial name="_TreeMultiSelectPartial" model="item" />
                                                         }
                                                     }
                                                 }
-
                                             </ul>
                                         </div>
-                                        <!-- /col -->
-
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +93,7 @@
 
 
  
-
+*@
 
  
 
@@ -211,11 +204,23 @@
             localStorage.setItem("ParentIdOrganizationId", document.getElementById("ParentIdOrganizationId").value);
         }
 
-        function ClearAll()
-        {
+        function ClearAllSingle() {
             debugger;
 
             var allcheckBox = document.getElementsByClassName('org');
+            for (let i = 0; i < allcheckBox.length; i++) {
+                allcheckBox[i].checked = false;
+            }
+            localStorage.setItem("ParentIdOrganizationName", "");
+            localStorage.setItem("ParentIdOrganizationId", "");
+            document.getElementById("ParentIdOrganizationName").value = "";
+            document.getElementById("ParentIdOrganizationId").value = "";
+        }
+
+        function ClearAllMul() {
+            debugger;
+
+            var allcheckBox = document.getElementsByClassName('orgmul');
             for (let i = 0; i < allcheckBox.length; i++) {
                 allcheckBox[i].checked = false;
             }
