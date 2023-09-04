@@ -37,7 +37,7 @@ namespace KMSUI.Controllers
                 PersianTitle = org.PersianTitle,
                 SortingNumber = org.SortingNumber
             };
-            if (org.ParentId != null && org.ParentId != Guid.Empty ) { dto.ParentId = org.ParentId; }
+            if (org.ParentId != null && org.ParentId != Guid.Empty) { dto.ParentId = org.ParentId; }
 
 
             await organizationService.Add(dto);
@@ -47,12 +47,40 @@ namespace KMSUI.Controllers
         }
 
 
-
+        [HttpGet("OrganizationEdit")]
         public async Task<IActionResult> OrganizationEdit()
         {
             var organizationTree = await organizationService.GetOrganizationTree();
             ViewBag.OrganizationTree = organizationTree;
             return View();
+        }
+
+        [HttpPost("OrganizationEdit")]
+        public async Task<IActionResult> OrganizationEdit(OrganizationAddViewModel org)
+        {
+            //validation
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(OrganizationEdit));
+            }
+            if(org.Id==org.ParentId) return RedirectToAction(nameof(OrganizationEdit));
+
+
+            //edit
+            OrganizationDto dto = new OrganizationDto
+            {
+                Id = (Guid)org.Id,
+                ParentId = org.ParentId,
+                PersianTitle = org.PersianTitle,
+                SortingNumber = org.SortingNumber
+            };
+            if (org.ParentId != null && org.ParentId != Guid.Empty) { dto.ParentId = org.ParentId; }
+
+
+            await organizationService.Update(dto);
+
+
+            return RedirectToAction(nameof(OrganizationEdit));
         }
     }
 }

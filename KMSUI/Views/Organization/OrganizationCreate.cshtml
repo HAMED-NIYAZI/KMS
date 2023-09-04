@@ -158,7 +158,6 @@
             }
         }
 
-
         function AssignToTextBoxMultiSelect(e, id, name) {
             debugger;
             var checkbox = document.getElementById(id);
@@ -232,5 +231,29 @@
             document.getElementById("ParentIdOrganizationName").value = "";
             document.getElementById("ParentIdOrganizationId").value = "";
         }
+
+
+        //Second
+
+        function AssignToTextBoxSingleSecond(e, id, name) {
+            debugger;
+            var checkbox = document.getElementById(id);
+            if (checkbox.checked == true) {
+                var allcheckBox = document.getElementsByClassName('orgSecond');
+                for (let i = 0; i < allcheckBox.length; i++) {
+                    allcheckBox[i].checked = false;
+                }
+                checkbox.checked = true;
+                document.getElementById("OrganizationName").value = name;
+                document.getElementById("OrganizationId").value = id;
+             } else {
+                document.getElementById("OrganizationName").value = "";
+                document.getElementById("OrganizationId").value = "";
+            }
+        }
+
+    //        Second
+
+
     </script>
 }
