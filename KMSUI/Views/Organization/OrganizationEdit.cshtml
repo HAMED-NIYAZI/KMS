@@ -1,0 +1,260 @@
+﻿@using KMS.Application.Dtos.OrganizationDto;
+@model OrganizationAddViewModel
+
+@{
+    var OrganizationTrees = (List<OrganizationTree>)ViewBag.OrganizationTree;
+}
+
+
+
+@section Styles{
+    <link href="/assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <link href="/assets/plugins/treeview/treeview-rtl.css" rel="stylesheet" type="text/css" />
+ 	}
+
+
+
+
+
+<div class="row  justify-content-center mt-4">
+    <div class="col-lg-8 col-xl-8 col-md-10 col-12">
+        <div class="card  box-shadow-0">
+            <div class="card-header">
+                <h4 class="card-title mb-1 text-center">ویرایش سازمان   </h4>
+            </div>
+            <div class="card-body pt-0">
+                <form class="form-horizontal" method="post" asp-area="" asp-controller="Organization" asp-action="Create" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>نام سازمان:</label>
+                        <div class="form-group">
+                            <input id="ParentIdOrganizationName" class="form-control" readonly>
+                            <input asp-for="ParentId" id="ParentIdOrganizationId" class="form-control" hidden>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <p class="mg-b-20">انتخاب سازمان: <span onclick="ClearAllSingle()"><img width="15" height="15" style="cursor:pointer;" src="~/Images/Icon/loading-arrow.png" /></span></p>
+                                    <div class="row">
+                                        <div class="col-12" style="margin: -1px -12px -5px 0px;">
+                                            <ul id="tree5">
+                                                @{
+                                                    @if (OrganizationTrees != null && OrganizationTrees.Count > 0)
+                                                    {
+                                                        foreach (var item in OrganizationTrees)
+                                                        {
+                                                            <partial name="_TreeSingleSelectPartial" model="item" />
+                                                        }
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <input id="ParentIdOrganizationName" class="form-control" readonly>
+                        <input asp-for="ParentId" id="ParentIdOrganizationId" class="form-control" hidden>
+                    </div>
+                    <div>
+
+                        <div class="col-md-12">
+
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <p class="mg-b-20">انتخاب سرشاخه: <span onclick="ClearAllSingle()"><img width="15" height="15" style="cursor:pointer;" src="~/Images/Icon/loading-arrow.png" /></span></p>
+                                    <div class="row">
+                                        <div class="col-12" style="margin: -1px -12px -5px 0px;">
+                                            <ul id="tree6">
+                                                @{
+                                                    @if (OrganizationTrees != null && OrganizationTrees.Count > 0)
+                                                    {
+                                                        foreach (var item in OrganizationTrees)
+                                                        {
+                                                            <partial name="_TreeSingleSelectPartial" model="item" />
+                                                        }
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @*             <div class="col-md-12">
+
+                        <div class="card">
+                        <div class="card-body">
+                        <p class="mg-b-20"> چند تایی انتخاب سرشاخه: <span onclick="ClearAllMul()"><img width="15" height="15" style="cursor:pointer;" src="~/Images/Icon/loading-arrow.png" /></span></p>
+                        <div class="row">
+                        <div class="col-12" style="margin: -1px -12px -5px 0px;">
+                        <ul id="tree6">
+                        @{
+                        @if (OrganizationTrees != null && OrganizationTrees.Count > 0)
+                        {
+                        foreach (var item in OrganizationTrees)
+                        {
+                        <partial name="_TreeMultiSelectPartial" model="item" />
+                        }
+                        }
+                        }
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+
+
+
+
+                        *@
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label>ترتیب نمایش:</label>
+                        <input asp-for="SortingNumber" class="form-control" value="0" placeholder="ترتیب نمایش">
+                        <span asp-validation-for="SortingNumber" class="text-danger"></span>
+                    </div>
+
+
+                    @*                    <div class="form-group mb-0 mt-3 justify-content-end">
+                    <div>
+                    <button type="submit" class="btn btn-primary">ورود</button>
+                    <button type="submit" class="btn btn-secondary">لغو</button>
+                    </div>
+                    </div>*@
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary  margin-left-10px">ذخیره</button>
+                        <button type="reset" class="btn btn-secondary  margin-left-10px">بازنشانی</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    <script src="/assets/plugins/treeview/treeview.js"></script>
+    <script type="text/javascript">
+
+        function AssignToTextBoxSingle(e, id, name) {
+            debugger;
+            var checkbox = document.getElementById(id);
+            if (checkbox.checked == true) {
+                var allcheckBox = document.getElementsByClassName('org');
+                for (let i = 0; i < allcheckBox.length; i++) {
+                    allcheckBox[i].checked = false;
+                }
+                checkbox.checked = true;
+                document.getElementById("ParentIdOrganizationName").value = name;
+                document.getElementById("ParentIdOrganizationId").value = id;
+                // alert("Checkbox is clicked");
+            } else {
+                document.getElementById("ParentIdOrganizationName").value = "";
+                document.getElementById("ParentIdOrganizationId").value = "";
+            }
+        }
+
+
+        function AssignToTextBoxMultiSelect(e, id, name) {
+            debugger;
+            var checkbox = document.getElementById(id);
+
+            if (checkbox.checked == true) {
+                checkbox.checked = true;
+                if (document.getElementById("ParentIdOrganizationName").value == "" || document.getElementById("ParentIdOrganizationName").value == "undefined" || document.getElementById("ParentIdOrganizationName").value == undefined) {
+                    document.getElementById("ParentIdOrganizationName").value = name;
+                    document.getElementById("ParentIdOrganizationId").value = id;
+
+                }
+                else {
+                    document.getElementById("ParentIdOrganizationName").value += "," + name;
+                    document.getElementById("ParentIdOrganizationId").value += "," + id;
+                }
+
+
+
+                localStorage.setItem("ParentIdOrganizationName", document.getElementById("ParentIdOrganizationName").value);
+                localStorage.setItem("ParentIdOrganizationId", document.getElementById("ParentIdOrganizationId").value);
+            }
+            else {
+
+                let names = document.getElementById("ParentIdOrganizationName").value;
+                const myArray = names.split(",");
+                const index = myArray.indexOf(name);
+                myArray.splice(index, 1);
+
+                document.getElementById("ParentIdOrganizationName").value = "";
+                if (myArray.length != 0) {
+
+                    document.getElementById("ParentIdOrganizationName").value = myArray[0];
+                    for (let e = 1; e < myArray.length; e++) {
+                        document.getElementById("ParentIdOrganizationName").value += "," + myArray[e];
+                    }
+
+                }
+
+
+            }
+
+            localStorage.setItem("ParentIdOrganizationName", document.getElementById("ParentIdOrganizationName").value);
+            localStorage.setItem("ParentIdOrganizationId", document.getElementById("ParentIdOrganizationId").value);
+        }
+
+        function ClearAllSingle() {
+            debugger;
+
+            var allcheckBox = document.getElementsByClassName('org');
+            for (let i = 0; i < allcheckBox.length; i++) {
+                allcheckBox[i].checked = false;
+            }
+            localStorage.setItem("ParentIdOrganizationName", "");
+            localStorage.setItem("ParentIdOrganizationId", "");
+            document.getElementById("ParentIdOrganizationName").value = "";
+            document.getElementById("ParentIdOrganizationId").value = "";
+        }
+
+        function ClearAllMul() {
+            debugger;
+
+            var allcheckBox = document.getElementsByClassName('orgmul');
+            for (let i = 0; i < allcheckBox.length; i++) {
+                allcheckBox[i].checked = false;
+            }
+            localStorage.setItem("ParentIdOrganizationName", "");
+            localStorage.setItem("ParentIdOrganizationId", "");
+            document.getElementById("ParentIdOrganizationName").value = "";
+            document.getElementById("ParentIdOrganizationId").value = "";
+        }
+    </script>
+}

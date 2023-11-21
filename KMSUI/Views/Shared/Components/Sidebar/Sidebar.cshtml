@@ -37,15 +37,19 @@
                      <li class="sub-slide">
                         <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="#"><span class="sub-side-menu__label"> اطلاعات پایه</span><i class="sub-angle fe fe-chevron-down"></i></a>
                         <ul class="sub-slide-menu">
-                            <li><a class="sub-slide-item" asp-area="" asp-controller="Organization" asp-action="OrganizationList">مدیریت سازمان</a></li>
-                            <li><a class="sub-slide-item" asp-area="" asp-controller="Organization" asp-action="OrganizationList2">مدیریت چارت</a></li>
-                  @*          <li class="sub-slide-sub">
-                                <a class="sub-side-menu__item sub-slide-item" data-bs-toggle="sub-slide-sub" href="#"><span class="sub-side-menu__label">سطح 03</span><i class="sub-angle fe fe-chevron-down"></i></a>
+       @*                     <li><a class="sub-slide-item" asp-area="" asp-controller="Organization" asp-action="OrganizationCreate">مدیریت سازمان</a></li>
+                            <li><a class="sub-slide-item" asp-area="" asp-controller="Organization" asp-action="OrganizationEdit">مدیریت چارت</a></li>*@
+                        <li class="sub-slide-sub">
+                                <a class="sub-side-menu__item sub-slide-item" data-bs-toggle="sub-slide-sub" href="#"><span class="sub-side-menu__label">سازمان</span><i class="sub-angle fe fe-chevron-down"></i></a>
                                 <ul class="sub-slide-menu-sub">
-                                    <li><a class="sub-slide-item" href="#">سطح 1</a></li>
-                                    <li><a class="sub-slide-item" href="#">سطح 2</a></li>
+                                    <li>
+                                        <a class="sub-slide-item" asp-area="" asp-controller="Organization" asp-action="OrganizationCreate">ثبت سازمان جدید </a>
+                                    </li>
+                                    <li>
+                                        <a class="sub-slide-item" asp-area="" asp-controller="Organization" asp-action="OrganizationEdit">    ویرایش سازمان                       </a>
+                                    </li>
                                 </ul>
-                            </li>*@
+                            </li> 
                         </ul>
                     </li>
                 </ul>

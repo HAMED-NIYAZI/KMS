@@ -6,11 +6,13 @@ namespace KMSUI.ViewModels.Organization
 
     public class OrganizationAddViewModel
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "این فیلد اجباری می باشد")]
+        [MaxLength(250, ErrorMessage = "حداکثر 100 کاراکتر مجاز می باشد")]
         public string PersianTitle { get; set; }
-        public Guid ParentId { get; set; }
-        public int SortingNumber { get; set; }
+        public Guid? ParentId { get; set; }
+        [Required]
+        public int SortingNumber { get; set; } 
     }
 }
