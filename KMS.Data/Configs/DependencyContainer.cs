@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KMS.Data.Repositories.GenericEF;
 using KMS.Data.Repositories.Organization;
+using KMS.Data.Repositories.HomePageSetting;
 
 namespace KMS.Data.Configs
 {
@@ -14,12 +15,13 @@ namespace KMS.Data.Configs
     {
         public static void RegisterDataLayerServices(this IServiceCollection services)
         {
-            #region Services
+            #region Repository
 
 
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
             services.AddScoped(typeof(IOrganizationRepository), typeof(OrganizationRepository));
             services.AddScoped(typeof(IGenericEFRepository<Organization>), typeof(GenericEFRepository < Organization>));
+            services.AddScoped<IHomePageSettingRepository, HomePageSettingRepository>();
 
             #endregion
 

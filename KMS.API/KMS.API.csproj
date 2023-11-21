@@ -31,4 +31,8 @@
 		<ProjectReference Include="..\KMS.Application\KMS.Application.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\Src\HomePage\Img\" />
+	</ItemGroup>
+
 </Project>
