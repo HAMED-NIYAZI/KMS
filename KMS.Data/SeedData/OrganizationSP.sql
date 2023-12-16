@@ -181,7 +181,7 @@ ALTER PROCEDURE [dbo].[Organization.Count]
 AS
 BEGIN
   	SET NOCOUNT ON;
- SELECT COUNT(*) FROM dbo.Organizations
+ SELECT COUNT(Id) FROM dbo.Organizations
 END
 
  -------------------------------------

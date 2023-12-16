@@ -10,12 +10,12 @@ namespace KMS.Data.Repositories.GenericEF
 {
     public interface IGenericEFRepository<T> where T : BaseEntity
     {
-        IQueryable<T> GetAll();
-        T? GetById(Guid id);
-        bool Add(T entity);
-        bool Update(T entity);
-        bool UpdateById(T entity, Guid id);
-        bool DeleteById(T entity, Guid id);
-        bool Delete(T entity);
+        IQueryable<T>  GetAll();
+        Task<T?>  GetById(Guid id);
+        Task<bool> Add(T entity);
+        Task<bool> Update(T entity);
+        Task<bool> UpdateById(T entity, Guid id);
+         bool  DeleteById(T entity, Guid id);
+         bool  Delete(T entity);
     }
 }

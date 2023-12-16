@@ -82,5 +82,13 @@ namespace KMSUI.Controllers
 
             return RedirectToAction(nameof(OrganizationEdit));
         }
+
+        [HttpPost("OrganizationDelete")]
+        public async Task<IActionResult> OrganizationDelete(Guid Id)
+        {
+            await organizationService.Delete(Id);
+
+            return RedirectToAction(nameof(OrganizationEdit));
+        }
     }
 }

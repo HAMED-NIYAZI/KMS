@@ -1,5 +1,6 @@
 ﻿using Data.Context;
 using KMS.Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,25 +16,25 @@ namespace KMS.Data.Repositories.GenericEF
         {
             this.context = context;
         }
-        public bool Add(T entity)
+        public async Task<bool> Add(T entity)
         {
             if (entity.Id == Guid.Empty) entity.Id = Guid.NewGuid();
             entity.CreateDate = DateTime.Now;
             entity.LastUpdateDate = DateTime.Now;
 
-            context.Add(entity);
-            context.SaveChanges();
+            await context.AddAsync(entity);
+            await context.SaveChangesAsync();
             return true;
         }
 
-        public bool Delete(T entity)
+        public    bool  Delete(T entity)
         {
-            context.Remove(entity);
+             context.Remove(entity);
             context.SaveChanges();
             return true;
         }
 
-        public bool DeleteById(T entity, Guid Id)
+        public  bool  DeleteById(T entity, Guid Id)
         {
             context.Remove(entity);
             context.SaveChanges();
@@ -45,12 +46,12 @@ namespace KMS.Data.Repositories.GenericEF
             return context.Set<T>();
         }
 
-        public T? GetById(Guid id)
+        public async Task<T?> GetById(Guid id)
         {
-            return context.Set<T>().FirstOrDefault(t => t.Id == id);
+            return await  context.Set<T>().FirstOrDefaultAsync(t => t.Id == id);
         }
 
-        public bool Update(T entity)
+        public async Task<bool> Update(T entity)
         {
             if (entity.Id == Guid.Empty) return false;
             entity.LastUpdateDate = DateTime.Now;
@@ -59,9 +60,9 @@ namespace KMS.Data.Repositories.GenericEF
             return true;
         }
 
-        public bool UpdateById(T entity, Guid id)
+        public async bool  UpdateById(T entity, Guid id)
         {
-            T? findedEntity = GetById(id);
+            T? findedEntity =await GetById(id);
             if (findedEntity != null)
             {
                 Update(findedEntity);
@@ -69,6 +70,12 @@ namespace KMS.Data.Repositories.GenericEF
             }
             return false;
 
+        }
+
+
+        public async Task Savehcange() 
+        { 
+            
         }
     }
 }

@@ -1,15 +1,15 @@
 ﻿
-namespace KMS.Application.Dtos.OrganizationDto
+namespace KMS.Application.Dtos.ChartDto
 {
-    public class OrganizationTree
-	{
+    public class ChartTree
+    {
 		public Guid Id { get; set; }
 		public int SortingNumber { get; set; }
 		public string PersianTitle { get; set; }
 		public bool IsSelected { get; set; }
 		public Guid? ParentId { get; set; }
 
-		public ICollection<OrganizationTree> Children { get; set; }=new List<OrganizationTree>();
+		public ICollection<ChartTree> Children { get; set; }=new List<ChartTree>();
 
 
 	}
