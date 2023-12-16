@@ -1,4 +1,5 @@
-﻿using KMS.Application.Services.OrganizationService;
+﻿using KMS.Application.Services.LoginPageSettingService;
+using KMS.Application.Services.OrganizationService;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace KMS.Application.Configs
@@ -12,6 +13,7 @@ namespace KMS.Application.Configs
 
 
             services.AddScoped<IOrganizationService, OrganizationService>();
+            services.AddScoped<ILoginPageSettingService, LoginPageSettingService>();
 
             #endregion
 
