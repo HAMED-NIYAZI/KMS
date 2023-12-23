@@ -25,7 +25,7 @@ namespace KMS.Data.Repositories.HomePageSetting
            // OrganizationId=m.OrganizationId,
             ImagePath=m.ImagePath,
             }).FirstOrDefaultAsync();
-
+                        
             return model;
         }
     }
