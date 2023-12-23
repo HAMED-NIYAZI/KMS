@@ -21,8 +21,8 @@ namespace KMS.API.ViewModel
             this.StatusCode = statusCode;
         }
 
-
     }
+   
     public enum Result
     {
         Success,
