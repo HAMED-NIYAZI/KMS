@@ -1,4 +1,5 @@
-﻿using KMS.Domain.ViewModel.LoginPage;
+﻿using KMS.Application.Dtos.HomePageSettingDto;
+using KMS.Domain.ViewModel.LoginPage;
 using KMS.Domain.ViewModel.Response;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace KMS.Application.Services.LoginPageSettingService
 {
     public interface ILoginPageSettingService
     {
-        Task<ResponseViewModel> GetLoginPageSetting();
+        Task<LoginHomePageSettingDto> GetLoginPageSetting();
  
 
     }

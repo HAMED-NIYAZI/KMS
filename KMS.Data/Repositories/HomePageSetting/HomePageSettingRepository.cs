@@ -2,7 +2,6 @@
 using KMS.Data.Repositories.GenericEF;
 using KMS.Data.Repositories.Organization;
 using KMS.Domain;
-using KMS.Domain.ViewModel.LoginPage;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,9 +17,9 @@ namespace KMS.Data.Repositories.HomePageSetting
         {
         }
 
-        public async Task<LoginPageViewModel?> GetLoginPageSetting()
+        public async Task<Domain.HomePageSetting?> GetLoginPageSetting()
         {
-            var model =await GetAll().Select(m => new LoginPageViewModel() { 
+            var model =await GetAll().Select(m => new Domain.HomePageSetting() { 
             Title=m.Title,
             Description=m.Description,
            // OrganizationId=m.OrganizationId,

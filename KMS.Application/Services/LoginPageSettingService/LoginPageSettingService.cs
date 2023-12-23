@@ -1,4 +1,6 @@
-﻿using KMS.Data.Repositories.HomePageSetting;
+﻿using AutoMapper;
+using KMS.Application.Dtos.HomePageSettingDto;
+using KMS.Data.Repositories.HomePageSetting;
 using KMS.Domain.ViewModel.Response;
 using System;
 using System.Collections.Generic;
@@ -11,31 +13,15 @@ namespace KMS.Application.Services.LoginPageSettingService
     public class LoginPageSettingService : ILoginPageSettingService
     {
         private readonly IHomePageSettingRepository repository;
-        public LoginPageSettingService(IHomePageSettingRepository repository)
+        private readonly IMapper mapper;
+        public LoginPageSettingService(IHomePageSettingRepository repository, IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
-        public async Task<ResponseViewModel> GetLoginPageSetting()
+        public async Task<LoginHomePageSettingDto> GetLoginPageSetting()
         {
-            try
-            {
-                var model =await  repository.GetLoginPageSetting();
-
-                if (model is not null)
-                {
-                    return new ResponseViewModel() { Data = model, Message = "داده یافت شد", StatusCode = 200, Result = Result.Success };
-                }
-                else {
-                    return new ResponseViewModel() { Data = null, Message = "داده یافت نشد", StatusCode = 404, Result = Result.NotFound };
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                return new ResponseViewModel() {Data=null,Message=ex.Message,StatusCode=500,Result=Result.ExeptionError };
-            }
+            return mapper.Map<LoginHomePageSettingDto>(await repository.GetLoginPageSetting());
         }
     }
 }

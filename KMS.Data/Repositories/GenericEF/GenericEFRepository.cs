@@ -23,21 +23,21 @@ namespace KMS.Data.Repositories.GenericEF
             entity.LastUpdateDate = DateTime.Now;
 
             await context.AddAsync(entity);
-            await context.SaveChangesAsync();
+            await SaveChangesAsync();
             return true;
         }
 
-        public    bool  Delete(T entity)
+        public async Task<bool> Delete(T entity)
         {
              context.Remove(entity);
-            context.SaveChanges();
+            await SaveChangesAsync();
             return true;
         }
 
-        public  bool  DeleteById(T entity, Guid Id)
+        public async Task<bool> DeleteById(T entity, Guid Id)
         {
             context.Remove(entity);
-            context.SaveChanges();
+            await SaveChangesAsync();
             return true;
         }
 
@@ -56,11 +56,11 @@ namespace KMS.Data.Repositories.GenericEF
             if (entity.Id == Guid.Empty) return false;
             entity.LastUpdateDate = DateTime.Now;
             context.Update(entity);
-            context.SaveChanges();
+         await SaveChangesAsync();
             return true;
         }
 
-        public async bool  UpdateById(T entity, Guid id)
+        public async Task<bool> UpdateById(T entity, Guid id)
         {
             T? findedEntity =await GetById(id);
             if (findedEntity != null)
@@ -73,9 +73,9 @@ namespace KMS.Data.Repositories.GenericEF
         }
 
 
-        public async Task Savehcange() 
-        { 
-            
+        public async Task SaveChangesAsync() 
+        {
+          await  context.SaveChangesAsync();
         }
     }
 }

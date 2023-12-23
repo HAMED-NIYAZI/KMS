@@ -1,4 +1,5 @@
 ﻿using KMS.Api.Controllers;
+using KMS.API.ViewModel;
 using KMS.Application.Services.LoginPageSettingService;
 using KMS.Application.Services.OrganizationService;
 using Microsoft.AspNetCore.Authorization;
@@ -20,8 +21,15 @@ namespace KMS.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetLoginPageSetting()
         {
-           var res=await loginPageSettingService.GetLoginPageSetting();
-            return Ok(res);
+            try
+            {
+                var res = await loginPageSettingService.GetLoginPageSetting();
+                return Ok(ApiResponse.Response(res));
+            }
+            catch (Exception ex)
+            {
+                return Ok(ApiResponse.Response(ex.Message));
+            }
         }
     }
 }

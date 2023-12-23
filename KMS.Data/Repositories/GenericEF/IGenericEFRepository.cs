@@ -15,7 +15,7 @@ namespace KMS.Data.Repositories.GenericEF
         Task<bool> Add(T entity);
         Task<bool> Update(T entity);
         Task<bool> UpdateById(T entity, Guid id);
-         bool  DeleteById(T entity, Guid id);
-         bool  Delete(T entity);
+        Task<bool> DeleteById(T entity, Guid id);
+        Task<bool> Delete(T entity);
     }
 }
