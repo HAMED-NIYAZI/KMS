@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using KMS.Application.Dtos.HomePageSettingDto;
-using KMS.Application.Dtos.OrganizationDto;
-using KMS.Domain;
+ using KMS.Domain;
+using KMS.Domain.Dto.HomePageSettingDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

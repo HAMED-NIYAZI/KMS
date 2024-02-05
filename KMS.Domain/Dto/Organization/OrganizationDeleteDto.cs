@@ -1,6 +1,6 @@
-﻿namespace KMS.Application.Dtos.ChartDto
+﻿namespace KMS.Domain.Dto.Organization
 {
-    public class ChartDeleteDto
+    public class OrganizationDeleteDto
     {
         public Guid Id { get; set; }
         public bool isDeleted { get; set; }

@@ -1,13 +1,12 @@
-﻿using KMS.Application.Dtos.OrganizationDto;
-using KMS.Application.Services.OrganizationService;
-using KMS.Api.ViewModel.Organization;
+﻿using KMS.Application.Services.OrganizationService;
 using Microsoft.AspNetCore.Mvc;
 using KMS.Data.Repositories.Organization;
 using AutoMapper;
 using KMS.Domain;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
-using KMS.API.ViewModel;
 using static KMS.Domain.Enums;
+using KMS.Domain.Dto.Organization;
+using KMS.Domain.Dto.Response;
 
 
 namespace KMS.Api.Controllers

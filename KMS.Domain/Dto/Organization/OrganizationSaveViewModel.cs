@@ -1,13 +1,11 @@
-﻿namespace KMS.Application.Dtos.ChartDto
+﻿namespace KMS.Domain.Dto.Organization
 {
-    public class ChartDto
+    public class OrganizationSaveViewModel
     {
-        public Guid Id { get; set; }
- 
         public int SortingNumber { get; set; }
         public string PersianTitle { get; set; }
- 
         public Guid? ParentId { get; set; }
- 
+
+
     }
 }

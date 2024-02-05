@@ -1,4 +1,4 @@
-﻿namespace KMS.Application.Dtos.OrganizationDto
+﻿namespace KMS.Domain.Dto.Organization
 {
     public class OrganizationDto
     {
@@ -8,14 +8,14 @@
         //public bool IsDeleted { get; set; }
         public int SortingNumber { get; set; }
         public string PersianTitle { get; set; }
-       // public string EnglishTitle { get; set; }
-      //  public string Description { get; set; }
+        // public string EnglishTitle { get; set; }
+        //  public string Description { get; set; }
         public Guid? ParentId { get; set; }
 
         #region  Navigation Properties
-      //  public ICollection<Chart> Charts { get; set; }
+        //  public ICollection<Chart> Charts { get; set; }
         //public OrganizationDto Parent { get; set; }
-      //  public ICollection<OrganizationDto> Children { get; set; }
+        //  public ICollection<OrganizationDto> Children { get; set; }
         #endregion
     }
 }

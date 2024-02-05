@@ -1,11 +1,11 @@
-﻿using KMS.Application.Dtos.OrganizationDto;
-using AutoMapper;
+﻿using AutoMapper;
 using KMS.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KMS.Domain.Dto.Organization;
 
 namespace KMS.Application.Services.AutoMapperService
 {

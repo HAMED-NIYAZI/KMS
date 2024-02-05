@@ -1,5 +1,5 @@
-﻿using KMS.Application.Dtos.ChartDto;
-using KMS.Domain;
+﻿using KMS.Domain;
+using KMS.Domain.Dto.ChartDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace KMS.Application.Services.ChartService
 {
 #nullable enable
 
-     
+
     public interface IChartService
     {
         Task<List<ChartDto>> GetAll();

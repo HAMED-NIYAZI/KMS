@@ -1,6 +1,6 @@
 using KMS.Api.Extensions;
-using KMS.Application.Configs;
-using KMS.Data.Configs;
+using KMS.Application.RegisterService;
+using KMS.Data.RegisterService;
 
 var builder = WebApplication.CreateBuilder(args);
 

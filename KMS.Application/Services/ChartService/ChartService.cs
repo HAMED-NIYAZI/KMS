@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using KMS.Application.Dtos.ChartDto;
 using KMS.Data.Repositories.Charts;
 using KMS.Domain;
+using KMS.Domain.Dto.ChartDto;
 
 namespace KMS.Application.Services.ChartService
 {
