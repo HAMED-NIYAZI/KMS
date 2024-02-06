@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KMS.Data.Migrations
 {
     [DbContext(typeof(KMSContext))]
-    [Migration("20231121184004_v1211201")]
-    partial class v1211201
+    [Migration("20240206094546_v12")]
+    partial class v12
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

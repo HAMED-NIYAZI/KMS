@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KMS.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class V1414 : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,8 +37,8 @@ namespace KMS.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SortingNumber = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FormTypeId = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -54,15 +54,16 @@ namespace KMS.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Coulmn1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Coulmn2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Coulmn3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Coulmn4 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Coulmn5 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrganizationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Coulmn1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Coulmn2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Coulmn3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Coulmn4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Coulmn5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Coulmn6 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrganizationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -103,7 +104,7 @@ namespace KMS.Data.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConfirmedPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConfirmedEmail = table.Column<bool>(type: "bit", nullable: true),
+                    ConfirmedEmail = table.Column<bool>(type: "bit", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CodeMeli = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PersonnelNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -111,8 +112,8 @@ namespace KMS.Data.Migrations
                     PositionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PositionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GradeId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ChartId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    GradeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -150,8 +151,8 @@ namespace KMS.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SortingNumber = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateTextValue = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FormId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -172,8 +173,8 @@ namespace KMS.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Code = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FinalScore = table.Column<float>(type: "real", nullable: true),
                     OwnerUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     KnowledgeFieldId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -199,9 +200,9 @@ namespace KMS.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SortingNumber = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LongTextValue = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LongTextValue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FormId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -221,8 +222,8 @@ namespace KMS.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SortingNumber = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RadioButtonYesNoValue = table.Column<bool>(type: "bit", nullable: false),
                     FormId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -243,9 +244,9 @@ namespace KMS.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SortingNumber = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ShortTestValue = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShortTestValue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FormId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -313,8 +314,6 @@ namespace KMS.Data.Migrations
                 name: "IX_ShortTests_FormId",
                 table: "ShortTests",
                 column: "FormId");
-
-            migrationBuilder.AddStoredProcs();
         }
 
         /// <inheritdoc />

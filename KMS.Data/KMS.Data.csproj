@@ -38,4 +38,8 @@
 		<ProjectReference Include="..\KMS.Domain\KMS.Domain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="SeedData\HomePageSetting\" />
+	</ItemGroup>
+
 </Project>
