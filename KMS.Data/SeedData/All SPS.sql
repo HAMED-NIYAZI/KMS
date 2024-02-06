@@ -4,7 +4,7 @@ GO
  CREATE OR ALTER PROCEDURE [dbo].[HomePageSettingForLoginPage]
             AS
             BEGIN
-            SELECT * FROM [KMS_DB].[dbo].[HomePageSettings] where IsDeleted=0
+            SELECT * FROM [dbo].[HomePageSettings] where IsDeleted=0
             END
 ---------------------------------------------------------------------------------------
 

@@ -18,6 +18,5 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Domain\KnowledgeField\" />
-		<Folder Include="Dto\Account\" />
 	</ItemGroup>
 </Project>

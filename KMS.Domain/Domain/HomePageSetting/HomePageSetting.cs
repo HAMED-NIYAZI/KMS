@@ -13,9 +13,6 @@
         public string? Coulmn4 { get; set; }
         public string? Coulmn5 { get; set; }
         public string? Coulmn6 { get; set; }
- 
-
         public Guid? OrganizationId { get; set; }
-
     }
 }
