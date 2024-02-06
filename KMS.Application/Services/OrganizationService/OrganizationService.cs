@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using KMS.Application.Dtos.OrganizationDto;
 using KMS.Data.Repositories.Organization;
 using KMS.Domain;
+using KMS.Domain.Dto.Organization;
 using System.Collections.Generic;
 
 namespace KMS.Application.Services.OrganizationService
 {
-	public class OrganizationService : IOrganizationService
+    public class OrganizationService : IOrganizationService
 	{
 		private readonly IOrganizationRepository organizationRepository;
 		private readonly IMapper mapper;

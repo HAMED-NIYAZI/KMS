@@ -1,6 +1,5 @@
-﻿using KMS.Application.Dtos.HomePageSettingDto;
-using KMS.Domain.ViewModel.LoginPage;
-using KMS.Domain.ViewModel.Response;
+﻿using KMS.Domain.Dto.HomePageSettingDto;
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;

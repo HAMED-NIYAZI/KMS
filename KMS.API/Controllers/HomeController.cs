@@ -1,14 +1,14 @@
 ﻿using KMS.Api.Controllers;
-using KMS.API.ViewModel;
 using KMS.Application.Services.LoginPageSettingService;
 using KMS.Application.Services.OrganizationService;
+using KMS.Domain.Dto.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KMS.API.Controllers
 {
- 
+
     public class HomeController : KmsBaseController
     {
         private readonly ILoginPageSettingService loginPageSettingService;

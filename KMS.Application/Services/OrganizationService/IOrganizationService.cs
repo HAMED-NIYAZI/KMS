@@ -1,5 +1,5 @@
-﻿using KMS.Application.Dtos.OrganizationDto;
-using KMS.Domain;
+﻿using KMS.Domain;
+using KMS.Domain.Dto.Organization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace KMS.Application.Services.OrganizationService
 {
 #nullable enable
 
-     
+
     public interface IOrganizationService
     {
         Task<List<OrganizationDto>> GetAll();

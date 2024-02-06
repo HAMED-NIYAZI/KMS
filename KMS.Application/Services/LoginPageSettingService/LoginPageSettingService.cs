@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using KMS.Application.Dtos.HomePageSettingDto;
 using KMS.Data.Repositories.HomePageSetting;
-using KMS.Domain.ViewModel.Response;
-using System;
+using KMS.Domain.Dto.HomePageSettingDto;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
