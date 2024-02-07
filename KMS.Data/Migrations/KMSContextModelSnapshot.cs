@@ -138,6 +138,32 @@ namespace KMS.Data.Migrations
                     b.ToTable("DateTexts");
                 });
 
+            modelBuilder.Entity("KMS.Domain.Domain.Grade.Grade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GradeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SortingNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Grades");
+                });
+
             modelBuilder.Entity("KMS.Domain.Form", b =>
                 {
                     b.Property<Guid>("Id")
@@ -403,8 +429,8 @@ namespace KMS.Data.Migrations
                     b.Property<bool>("ConfirmedEmail")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ConfirmedPhone")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("ConfirmedPhone")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");

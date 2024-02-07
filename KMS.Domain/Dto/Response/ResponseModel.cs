@@ -24,12 +24,12 @@ public class ResponseModel
 
 public enum Result
 {
-    Success,
-    Failed,
-    IsExists,
-    ServerError,
-    ExeptionError,
-    NotFound
+    Success=0,
+    Failed=1,
+    IsExists=2,
+    ServerError=3,
+    ExeptionError=4,
+    NotFound=5
 }
 
 public static class ApiResponse
@@ -37,7 +37,7 @@ public static class ApiResponse
     public static ResponseModel Response(object? Data)
     {
         return Data is null ?
-                new ResponseModel { Data = null, Message = "دیتا یافت نشد", Result = Result.NotFound, StatusCode = 200 }
+                new ResponseModel { Data = null, Message = "دیتا یافت نشد", Result = Result.NotFound, StatusCode = 404 }
                   :
                   new ResponseModel { Data = Data, Message = "دیتا یافت شد", Result = Result.Success, StatusCode = 200 }
                ;
@@ -45,6 +45,6 @@ public static class ApiResponse
 
     public static ResponseModel Response(string msg = "خطای پیش بینی نشده")
     {
-        return new ResponseModel { Data = null, Message = msg, Result = Result.ExeptionError, StatusCode = 200 };
+        return new ResponseModel { Data = null, Message = msg, Result = Result.ExeptionError, StatusCode = 500 };
     }
 }

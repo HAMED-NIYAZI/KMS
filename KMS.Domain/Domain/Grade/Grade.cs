@@ -8,7 +8,7 @@ namespace KMS.Domain.Domain.Grade
 {
     public class Grade:BaseEntity
     {
-        public string GradeName { get; set; }
-        public int SortingNumber { get; set; }
+        public string? GradeName { get; set; }
+        public int SortingNumber { get; set; } = 0;
     }
 }

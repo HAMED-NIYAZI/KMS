@@ -8,11 +8,12 @@ namespace KMS.Domain.Dto.Account
 {
     public class UserLoginReturnDto
     {
+        public Guid UserId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? UserName { get; set; }
         public string? Phone { get; set; }
-        public string? ConfirmedPhone { get; set; }
+        public bool? ConfirmedPhone { get; set; }
         public string? Email { get; set; }
         public bool? ConfirmedEmail { get; set; }
         public string? Address { get; set; }
@@ -28,6 +29,8 @@ namespace KMS.Domain.Dto.Account
         public string? ChartPersianTitleName { get; set; }
         public Guid? OrganizationId { get; set; }
         public string? OrganizationPersianTitleName { get; set; }
+
+        public string? Token { get; set; }
     }
 }
 

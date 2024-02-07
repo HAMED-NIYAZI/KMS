@@ -1,4 +1,5 @@
 ﻿using KMS.Domain;
+using KMS.Domain.Domain.Grade;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context
@@ -13,6 +14,8 @@ namespace Data.Context
 
         #region DbSets
         public DbSet<User> Users { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+
         public DbSet<Chart> Charts { get; set; }
         public DbSet<HomePageSetting> HomePageSettings { get; set; }
         public DbSet<Knowledge> Knowledges { get; set; }

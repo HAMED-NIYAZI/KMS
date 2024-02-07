@@ -1,4 +1,5 @@
-﻿using KMS.Application.Services.LoginPageSettingService;
+﻿using KMS.Application.Services.AccountService;
+using KMS.Application.Services.LoginPageSettingService;
 using KMS.Application.Services.OrganizationService;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,15 +9,11 @@ public static class DependencyContainer
 {
     public static void RegisterApplicationLayerServices(this IServiceCollection services)
     {
-        #region Services
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 
         services.AddScoped<IOrganizationService, OrganizationService>();
         services.AddScoped<ILoginPageSettingService, LoginPageSettingService>();
-
-        #endregion
-
+        services.AddScoped<IAccountService, AccountService>();
 
     }
 }

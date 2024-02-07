@@ -10,8 +10,4 @@
     <ProjectReference Include="..\KMS.Application\KMS.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Tools\" />
-  </ItemGroup>
-
 </Project>

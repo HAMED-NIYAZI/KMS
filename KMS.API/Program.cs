@@ -1,4 +1,5 @@
 using KMS.Api.Extensions;
+using KMS.API.RegisterService;
 using KMS.Application.RegisterService;
 using KMS.Data.RegisterService;
 
@@ -20,6 +21,7 @@ builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.RegisterDataLayerServices();
 builder.Services.RegisterApplicationLayerServices();
+builder.Services.RegisterKMSAPIServices();
 
 builder.Services.AddControllers();
 

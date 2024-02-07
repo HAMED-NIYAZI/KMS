@@ -3,6 +3,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Extensions.Configuration;
+using System.ComponentModel.DataAnnotations;
 
 namespace KMS.Data.Repositories.GenericDapper
 {
@@ -118,5 +119,124 @@ namespace KMS.Data.Repositories.GenericDapper
 
             return result;
         }
+
+        //public T? ExecuteStoredProcedureGetOne<T>(string sp, DynamicParameters parms )
+        //{
+        //    //using (var connection = new SqlConnection(config.GetConnectionString(connectionstring)))
+        //    //{
+        //    //    connection.Open();
+        //    //    var s= connection.Query<T>(sp, parms, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        //    //}
+
+        //    T? result;
+        //    using IDbConnection db = GetDbconnection();
+        //    try
+        //    {
+        //        if (db.State == ConnectionState.Closed)
+        //            db.Open();
+
+        //        using var tran = db.BeginTransaction();
+        //        try
+        //        {
+        //            result = db.Query<T>(sp, parms, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        //            tran.Commit();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            tran.Rollback();
+        //            throw ex;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        if (db.State == ConnectionState.Open)
+        //            db.Close();
+        //    }
+
+        //    return result;
+
+        //    //T? result;
+        //    //using IDbConnection db = GetDbconnection();
+        //    //try
+        //    //{
+        //    //    if (db.State == ConnectionState.Closed)
+        //    //        db.Open();
+
+        //    //    using var tran = db.BeginTransaction();
+        //    //    try
+        //    //    {
+        //    //        result = db.Query<T>(sp, parms, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        //    //        tran.Commit();
+        //    //    }
+        //    //    catch (Exception ex)
+        //    //    {
+        //    //        tran.Rollback();
+        //    //        throw ex;
+        //    //    }
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    throw ex;
+        //    //}
+        //    //finally
+        //    //{
+        //    //    if (db.State == ConnectionState.Open)
+        //    //        db.Close();
+        //    //}
+
+        //    //return result;
+
+
+
+        //}
+
+        public T? ExecuteStoredProcedureGetOne<T>(string sp, DynamicParameters parms)
+        {
+            T? result;
+            using IDbConnection db = GetDbconnection();
+            try
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+
+                using var tran = db.BeginTransaction();
+                try
+                {
+                    // Pass the transaction object as a parameter to the Query method
+                    result = db.Query<T>(sp, parms, commandType: CommandType.StoredProcedure, transaction: tran).FirstOrDefault();
+                    tran.Commit();
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    throw; // Do not wrap the exception again, just rethrow it
+                }
+            }
+            catch (Exception ex)
+            {
+                throw; // Do not wrap the exception again, just rethrow it
+            }
+            finally
+            {
+                if (db.State == ConnectionState.Open)
+                    db.Close();
+            }
+
+            return result;
+        }
+        public List<T>? ExecuteStoredProcedureGetList<T>(string sp, DynamicParameters parms)
+        {
+ 
+            using (var connection = new SqlConnection(config.GetConnectionString(connectionstring)))
+            {
+                connection.Open();
+                return (List<T>)connection.Query<List<T>>(sp, parms, commandType: CommandType.StoredProcedure);
+            }
+        }
+
     }
 }
