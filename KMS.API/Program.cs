@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseStaticFiles();
 
 // Enable Cors
 app.UseCors("MyPolicy");

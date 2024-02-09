@@ -14,11 +14,13 @@ namespace KMS.API.Controllers
     {
         private readonly IAccountService accountService;
         private readonly ITokenService tokenService;
+        private readonly IConfiguration configuration;
 
-        public AccountController(IAccountService accountService, ITokenService tokenService)
+        public AccountController(IAccountService accountService, ITokenService tokenService, IConfiguration configuration)
         {
             this.accountService = accountService;
             this.tokenService = tokenService;
+            this.configuration = configuration;
         }
 
         [HttpPost("Login")]
@@ -36,8 +38,8 @@ namespace KMS.API.Controllers
 
                 var loginUser = accountService.Login(userLoginDto);
 
-                if (loginUser == null) return Ok(ApiResponse.Response(loginUser)); 
-                //throw new Exception("نام کاربری یا کلمه عبور اشتباه است");
+                if (loginUser == null) return Ok(ApiResponse.Response(loginUser));
+                loginUser.ImagePath = (loginUser.ImagePath == string.Empty || loginUser.ImagePath == null) ? string.Empty : configuration["UserAvatar"] + loginUser.ImagePath;
 
                 loginUser.Token = tokenService.CreateToken(loginUser);
 

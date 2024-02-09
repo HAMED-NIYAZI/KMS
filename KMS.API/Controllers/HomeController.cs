@@ -12,10 +12,12 @@ namespace KMS.API.Controllers
     public class HomeController : KmsBaseController
     {
         private readonly ILoginPageSettingService loginPageSettingService;
+        private readonly IConfiguration configuration;
 
-        public HomeController(ILoginPageSettingService loginPageSettingService)
+        public HomeController(ILoginPageSettingService loginPageSettingService, IConfiguration configuration)
         {
             this.loginPageSettingService = loginPageSettingService;
+            this.configuration = configuration;
         }
         [HttpGet("GetLoginPageSetting")]
         [AllowAnonymous]
@@ -24,6 +26,12 @@ namespace KMS.API.Controllers
             try
             {
                 var res = await loginPageSettingService.GetLoginPageSetting();
+                if (res == null)
+                {
+                    return Ok(ApiResponse.Response(res));
+                }
+                res.ImagePath=(res.ImagePath == string.Empty || res.ImagePath == null) ? string.Empty : configuration["HomePageSettingLogo"] + res.ImagePath;
+                //res.ImagePath = configuration["HomePageSettingLogo"] + res.ImagePath;
                 return Ok(ApiResponse.Response(res));
             }
             catch (Exception ex)

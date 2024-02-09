@@ -39,7 +39,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Documentation\" />
-	  <Folder Include="wwwroot\Src\HomePage\Img\" />
+	  <Folder Include="wwwroot\Src\Img\HomePageSetting\Logo\" />
 	</ItemGroup>
 
 </Project>
