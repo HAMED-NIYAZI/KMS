@@ -7,6 +7,5 @@ namespace KMS.Api.Controllers
     [ApiController]
     public class KmsBaseController : ControllerBase
     {
-       
     }
 }

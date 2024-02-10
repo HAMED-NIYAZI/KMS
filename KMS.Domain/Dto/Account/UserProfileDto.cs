@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KMS.Domain.Dto.Account
 {
-    public class UserProfileDto
+    public class UserLoginReturnDto
     {
         public Guid UserId { get; set; }
         public string? FirstName { get; set; }
@@ -30,6 +30,7 @@ namespace KMS.Domain.Dto.Account
         public Guid? OrganizationId { get; set; }
         public string? OrganizationPersianTitleName { get; set; }
 
-     }
+        public string? Token { get; set; }
+    }
 }
 
