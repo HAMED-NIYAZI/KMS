@@ -10,5 +10,7 @@ namespace KMS.Data.Repositories.User
     public interface IUserRepository
     {
         UserProfileDto? GetById(Guid id);
+        bool ChangePasswordByUser(UserChangePasswordDto model);
+        string GetPassword(Guid Id);
     }
 }

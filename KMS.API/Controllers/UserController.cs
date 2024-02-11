@@ -3,6 +3,7 @@ using KMS.Api.Controllers;
 using KMS.Application.Services.UserService;
 using KMS.Domain.Dto.Account;
 using KMS.Domain.Dto.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -26,9 +27,10 @@ namespace KMS.API.Controllers
 
         }
 
+        [Authorize]
         [HttpPost("GetById")]
         public async Task<IActionResult> GetById(string Id)
-        {
+        {                           
             try
             {
                 var isIdValid = Guid.TryParse(Id, out Guid userId);
@@ -57,6 +59,30 @@ namespace KMS.API.Controllers
             }
 
         }
+
+
+        [Authorize]
+        [HttpPost("ChangePasswordByUser")]
+        public async Task<IActionResult> ChangePasswordByUser(UserChangePasswordDto model)
+        {
+            try
+            {
+                var isIdValid = Guid.TryParse(model.Id.ToString(), out Guid userId);
+                if (!isIdValid) throw new Exception("Id is not valid Guid");
+
+                var res = userService.ChangePasswordByUser(model);
+
+                return Ok(ApiResponse.Response(res));
+
+            }
+            catch (Exception ex)
+            {
+                return Ok(ApiResponse.Response(ex.Message));
+            }
+
+        }
+
+
 
 
 

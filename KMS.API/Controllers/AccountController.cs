@@ -5,6 +5,7 @@ using KMS.Application.Services.LoginPageSettingService;
 using KMS.Common.Tools.Security;
 using KMS.Domain.Dto.Account;
 using KMS.Domain.Dto.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,8 @@ namespace KMS.API.Controllers
             this.configuration = configuration;
         }
 
+
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {

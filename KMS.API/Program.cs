@@ -2,6 +2,9 @@ using KMS.Api.Extensions;
 using KMS.API.RegisterService;
 using KMS.Application.RegisterService;
 using KMS.Data.RegisterService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +25,26 @@ builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.RegisterDataLayerServices();
 builder.Services.RegisterApplicationLayerServices();
 builder.Services.RegisterKMSAPIServices();
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["TokenKey"])),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+
+
 
 builder.Services.AddControllers();
 
@@ -47,7 +70,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); // Must come before UseAuthorization
 app.UseAuthorization();
+
 app.UseStaticFiles();
 
 // Enable Cors

@@ -19,6 +19,7 @@ namespace KMS.API.Controllers
             this.loginPageSettingService = loginPageSettingService;
             this.configuration = configuration;
         }
+
         [HttpGet("GetLoginPageSetting")]
         [AllowAnonymous]
         public async Task<IActionResult> GetLoginPageSetting()

@@ -30,9 +30,36 @@ namespace KMS.Data.Repositories.GenericDapper
 
         }
 
-        public int Execute(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
+        public void ExecuteTsql(string script, DynamicParameters parms)
         {
-            throw new NotImplementedException();
+              using IDbConnection db = GetDbconnection();
+            try
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+
+                using var tran = db.BeginTransaction();
+                try
+                {
+                    // Pass the transaction object as a parameter to the Query method
+                    db.Query(script, parms, commandType: CommandType.Text, transaction: tran);
+                    tran.Commit();
+                 }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    throw; // Do not wrap the exception again, just rethrow it
+                }
+            }
+            catch (Exception ex)
+            {
+                throw; // Do not wrap the exception again, just rethrow it
+            }
+            finally
+            {
+                if (db.State == ConnectionState.Open)
+                    db.Close();
+            }
         }
 
         public T? Get<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.Text)
@@ -237,6 +264,44 @@ namespace KMS.Data.Repositories.GenericDapper
                 return (List<T>)connection.Query<List<T>>(sp, parms, commandType: CommandType.StoredProcedure);
             }
         }
+
+
+
+        public T? ExecuteTsqlGetOne<T>(string sp, DynamicParameters parms)
+        {
+            T? result;
+            using IDbConnection db = GetDbconnection();
+            try
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+
+                using var tran = db.BeginTransaction();
+                try
+                {
+                    // Pass the transaction object as a parameter to the Query method
+                    result = db.Query<T>(sp, parms, commandType: CommandType.Text, transaction: tran).FirstOrDefault();
+                    tran.Commit();
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    throw; // Do not wrap the exception again, just rethrow it
+                }
+            }
+            catch (Exception ex)
+            {
+                throw; // Do not wrap the exception again, just rethrow it
+            }
+            finally
+            {
+                if (db.State == ConnectionState.Open)
+                    db.Close();
+            }
+
+            return result;
+        }
+
 
     }
 }

@@ -15,6 +15,37 @@ namespace KMS.Data.Repositories.User
         public UserRepository(IConfiguration config) : base(config)
         {
         }
+
+        public bool ChangePasswordByUser(UserChangePasswordDto model)
+        {
+            var sp = @"update [dbo].[Users]
+                       set Password=@Password
+                       where Id=@Id";
+
+
+            var param = new DynamicParameters();
+            param.Add("@Id", model.Id);
+            param.Add("@Password", model.NewPassword);
+
+             ExecuteTsql(sp, param);
+            return true;
+        }
+
+        public string GetPassword(Guid Id)
+        {
+            var sp = @"SELECT Password FROM [dbo].[Users]
+                       Where Id=@Id";
+
+
+            var param = new DynamicParameters();
+            param.Add("@Id", Id);
+
+
+            var res = ExecuteTsqlGetOne<string>(sp, param);
+
+            return res;
+        }
+
         public UserProfileDto? GetById(Guid id)
         {
             var sp = "[dbo].[UserProfile]";

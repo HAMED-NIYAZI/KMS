@@ -10,5 +10,7 @@ namespace KMS.Application.Services.UserService
     public interface IUserService
     {
         UserProfileDto? GetById(Guid id);
+        bool ChangePasswordByUser(UserChangePasswordDto model);
+
     }
 }
