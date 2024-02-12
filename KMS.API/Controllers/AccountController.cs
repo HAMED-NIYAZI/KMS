@@ -2,6 +2,7 @@
 using KMS.API.Services.JwtToken;
 using KMS.Application.Services.AccountService;
 using KMS.Application.Services.LoginPageSettingService;
+using KMS.Application.Services.UserService;
 using KMS.Common.Tools.Security;
 using KMS.Data.Repositories.User;
 using KMS.Domain.Dto.Account;
@@ -17,14 +18,14 @@ namespace KMS.API.Controllers
         private readonly IAccountService accountService;
         private readonly ITokenService tokenService;
         private readonly IConfiguration configuration;
-        private readonly IUserRepository userRepository;
+        private readonly IUserService userService;
 
-        public AccountController(IAccountService accountService, ITokenService tokenService, IConfiguration configuration, IUserRepository userRepository)
+        public AccountController(IAccountService accountService, ITokenService tokenService, IConfiguration configuration, IUserService userService)
         {
             this.accountService = accountService;
             this.tokenService = tokenService;
             this.configuration = configuration;
-            this.userRepository = userRepository;
+            this.userService = userService;
         }
 
 
@@ -72,9 +73,9 @@ namespace KMS.API.Controllers
 
                 model.Password = HashPassword.MD5Hash(model.Password);
 
-                userRepository.RequestRegister(model);
+                userService.RequestRegister(model);
 
-                return Ok(ApiResponse.Response(new { Result = 0, Message = "درخواست عضویت شما با موفقیت ثبت شد" }));
+                return Ok(ApiResponse.Response(new { Result = Result.Success, Message = "درخواست عضویت شما با موفقیت ثبت شد" }));
 
             }
             catch (Exception ex)

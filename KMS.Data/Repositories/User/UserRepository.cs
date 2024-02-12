@@ -91,10 +91,21 @@ namespace KMS.Data.Repositories.User
 
         public void RequestRegister(RequestRegisterDto model)
         {
-            var sp = @"INSERT INTO [dbo].[Users](FirstName,LastName,Password,Phone,Email,CodeMeli,PersonnelNumber,ChartId)
-                       VALUES(@FirstName,@LastName,@Password,@Phone,@Email,@CodeMeli,@PersonnelNumber,@ChartId)";
+            var script = "SELECT UserName FROM [dbo].[Users] WHERE UserName=@UserName";
+
 
             var param = new DynamicParameters();
+            param.Add("@UserName", model.CodeMeli);
+
+            var res = ExecuteStoredProcedureGetOne<string>(script, param);
+
+            if (res == model.CodeMeli) throw new Exception("کاربری با این کد ملی در سیستم وجود دارد.");
+
+
+           var  scriptInsert = @"INSERT INTO [dbo].[Users](FirstName,LastName,Password,Phone,Email,CodeMeli,PersonnelNumber,ChartId,Status)
+                       VALUES(@FirstName,@LastName,@Password,@Phone,@Email,@CodeMeli,@PersonnelNumber,@ChartId,0)";
+
+            var Insert = new DynamicParameters();
             param.Add("@FirstName", model.FirstName);
             param.Add("@LastName", model.LastName);
             param.Add("@Password", model.Password);
@@ -105,7 +116,7 @@ namespace KMS.Data.Repositories.User
             param.Add("@ChartId", model.ChartId);
 
 
-           ExecuteTsql(sp, param);
+           ExecuteTsql(scriptInsert, Insert);
         }
     }
 }

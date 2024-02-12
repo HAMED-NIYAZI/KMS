@@ -22,7 +22,7 @@
         public string ImagePath { get; set; }
         public Guid GradeId { get; set; }
         public Guid ChartId { get; set; }
-
+        public UserStatus Status { get; set; }
 
 
 
@@ -34,4 +34,11 @@
         //#endregion
 
     }
+
+    public enum UserStatus
+    {
+        Deactive = 0,
+        Active = 1,
+    }
+
 }
