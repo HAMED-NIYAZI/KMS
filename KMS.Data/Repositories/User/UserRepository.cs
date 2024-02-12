@@ -27,7 +27,7 @@ namespace KMS.Data.Repositories.User
             param.Add("@Id", model.Id);
             param.Add("@Password", model.NewPassword);
 
-             ExecuteTsql(sp, param);
+            ExecuteTsql(sp, param);
             return true;
         }
 
@@ -50,13 +50,62 @@ namespace KMS.Data.Repositories.User
         {
             var sp = "[dbo].[UserProfile]";
 
- 
+
             var param = new DynamicParameters();
-            param.Add("@UserId",id);
+            param.Add("@UserId", id);
 
             var res = ExecuteStoredProcedureGetOne<UserProfileDto>(sp, param);
 
             return res;
+        }
+
+        public void EditUserProfile(UserEditProfileDto model)
+        {
+            var sp = @"UPDATE  [dbo].[Users]
+                       SET FirstName=@FirstName,LastName=@LastName,Phone=@Phone,Email=@Email,[Address]=@Address,About=@About
+                       WHERE Id=@Id
+                       ";
+
+
+            var param = new DynamicParameters();
+            param.Add("@Id", model.Id);
+
+            ExecuteTsql(sp, param);
+
+        }
+
+        public void EditUserProfileImage(Guid Id, string imagePath)
+        {
+            var sp = @"UPDATE  [dbo].[Users]
+                       SET ImagePath=@ImagePath
+                       WHERE Id=@Id
+                       ";
+
+            var param = new DynamicParameters();
+            param.Add("@Id", Id);
+            param.Add("@ImagePath", imagePath);
+
+            ExecuteTsql(sp, param);
+
+        }
+
+        public void RequestRegister(RequestRegisterDto model)
+        {
+            var sp = @"INSERT INTO [dbo].[Users](FirstName,LastName,Password,Phone,Email,CodeMeli,PersonnelNumber,ChartId)
+                       VALUES(@FirstName,@LastName,@Password,@Phone,@Email,@CodeMeli,@PersonnelNumber,@ChartId)";
+
+            var param = new DynamicParameters();
+            param.Add("@FirstName", model.FirstName);
+            param.Add("@LastName", model.LastName);
+            param.Add("@Password", model.Password);
+            param.Add("@Phone", model.Phone);
+            param.Add("@Email", model.Email);
+            param.Add("@CodeMeli", model.CodeMeli);
+            param.Add("@PersonnelNumber", model.PersonnelNumber);
+            param.Add("@ChartId", model.ChartId);
+
+
+           ExecuteTsql(sp, param);
         }
     }
 }

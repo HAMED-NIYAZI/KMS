@@ -11,6 +11,9 @@ namespace KMS.Application.Services.UserService
     {
         UserProfileDto? GetById(Guid id);
         bool ChangePasswordByUser(UserChangePasswordDto model);
+        UserProfileDto? EditUserProfile(UserEditProfileDto model);
+        UserProfileDto? EditUserProfileImage(Guid Id, string imagePath);
+        void RequestRegister(RequestRegisterDto model);
 
     }
 }

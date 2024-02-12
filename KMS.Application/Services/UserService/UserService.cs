@@ -29,9 +29,27 @@ namespace KMS.Application.Services.UserService
             return userRepository.ChangePasswordByUser(model);
         }
 
+        public UserProfileDto EditUserProfile(UserEditProfileDto model)
+        {
+            userRepository.EditUserProfile(model);
+            return userRepository.GetById(model.Id);
+        }
+
+        public UserProfileDto? EditUserProfileImage(Guid Id, string imagePath)
+        {
+             userRepository.EditUserProfileImage(Id,imagePath);
+            return userRepository.GetById(Id);
+
+        }
+
         public UserProfileDto GetById(Guid id)
         {
             return userRepository.GetById(id);
+        }
+
+        public void RequestRegister(RequestRegisterDto model)
+        {
+            userRepository.RequestRegister(model);
         }
     }
 }

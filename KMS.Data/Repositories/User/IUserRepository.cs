@@ -12,5 +12,9 @@ namespace KMS.Data.Repositories.User
         UserProfileDto? GetById(Guid id);
         bool ChangePasswordByUser(UserChangePasswordDto model);
         string GetPassword(Guid Id);
+        void EditUserProfile(UserEditProfileDto model);
+        void EditUserProfileImage(Guid Id,string imagePath);
+        void RequestRegister(RequestRegisterDto model);
+
     }
 }

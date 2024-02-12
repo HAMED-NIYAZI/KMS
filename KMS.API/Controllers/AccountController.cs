@@ -3,6 +3,7 @@ using KMS.API.Services.JwtToken;
 using KMS.Application.Services.AccountService;
 using KMS.Application.Services.LoginPageSettingService;
 using KMS.Common.Tools.Security;
+using KMS.Data.Repositories.User;
 using KMS.Domain.Dto.Account;
 using KMS.Domain.Dto.Response;
 using Microsoft.AspNetCore.Authorization;
@@ -16,12 +17,14 @@ namespace KMS.API.Controllers
         private readonly IAccountService accountService;
         private readonly ITokenService tokenService;
         private readonly IConfiguration configuration;
+        private readonly IUserRepository userRepository;
 
-        public AccountController(IAccountService accountService, ITokenService tokenService, IConfiguration configuration)
+        public AccountController(IAccountService accountService, ITokenService tokenService, IConfiguration configuration, IUserRepository userRepository)
         {
             this.accountService = accountService;
             this.tokenService = tokenService;
             this.configuration = configuration;
+            this.userRepository = userRepository;
         }
 
 
@@ -46,14 +49,39 @@ namespace KMS.API.Controllers
 
                 loginUser.Token = tokenService.CreateToken(loginUser);
 
-  
-                 return Ok(ApiResponse.Response(loginUser));
+
+                return Ok(ApiResponse.Response(loginUser));
 
             }
             catch (Exception ex)
             {
-                 return Ok(ApiResponse.Response(ex.Message));
+                return Ok(ApiResponse.Response(ex.Message));
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("RequestRegister")]
+        public async Task<IActionResult> RequestRegister(RequestRegisterDto model)
+        {
+            try
+            {
+                //Log
+                // Log(userLoginDto);
+
+                //validation
+
+                model.Password = HashPassword.MD5Hash(model.Password);
+
+                userRepository.RequestRegister(model);
+
+                return Ok(ApiResponse.Response(new { Result = 0, Message = "درخواست عضویت شما با موفقیت ثبت شد" }));
+
+            }
+            catch (Exception ex)
+            {
+                return Ok(ApiResponse.Response(ex.Message));
+            }
+        }
+
     }
 }
