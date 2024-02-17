@@ -1,12 +1,14 @@
 ﻿
 using KMS.Api.Controllers;
 using KMS.Application.Services.UserService;
+using KMS.Common.Tools.Resource;
 using KMS.Domain.Dto.Account;
 using KMS.Domain.Dto.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KMS.API.Controllers
 {
@@ -29,7 +31,7 @@ namespace KMS.API.Controllers
         }
 
         [HttpPost("GetById")]
-        public async Task<IActionResult> GetById(string Id)
+        public IActionResult GetById(string Id)
         {
             try
             {
@@ -45,7 +47,7 @@ namespace KMS.API.Controllers
                         var cacheEntryOptions = new MemoryCacheEntryOptions()
                             .SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeOut));
 
-                        data.ImagePath = (data.ImagePath == string.Empty || data.ImagePath == null) ? string.Empty : configuration["UserAvatar"] + data.ImagePath;
+                        data.ImagePath = ImagePath.GetUserAvatarPath(configuration,data.ImagePath);
 
                         cache.Set(cacheKey, data, cacheEntryOptions);
                     }
@@ -62,7 +64,7 @@ namespace KMS.API.Controllers
 
 
         [HttpPost("ChangePasswordByUser")]
-        public async Task<IActionResult> ChangePasswordByUser(UserChangePasswordDto model)
+        public IActionResult ChangePasswordByUser(UserChangePasswordDto model)
         {
             try
             {
@@ -83,15 +85,19 @@ namespace KMS.API.Controllers
 
 
         [HttpPost("EditUserProfile")]
-        public async Task<IActionResult> EditUserProfile(UserEditProfileDto model)
+        public IActionResult EditUserProfile(UserEditProfileDto model)
         {
             try
             {
                 var isIdValid = Guid.TryParse(model.Id.ToString(), out Guid userId);
                 if (!isIdValid) throw new Exception("Id is not valid Guid");
 
-
                 var res = userService.EditUserProfile(model);
+                res.ImagePath = ImagePath.GetUserAvatarPath(configuration, res.ImagePath);
+
+
+                cache.Remove("GetById" + res.UserId);
+
                 return Ok(ApiResponse.Response(res));
 
             }
@@ -102,20 +108,17 @@ namespace KMS.API.Controllers
         }
 
         [HttpPost("EditUserProfileImage/{Id}")]
-        public async Task<IActionResult> Post(IFormFile file, string Id)
+        public async Task<IActionResult> EditUserProfileImage(IFormFile file, string Id)
         {
             try
             {
-                if (!Guid.TryParse(Id, out Guid userId))
-                {
-                    throw new Exception("Id is not valid Guid");
-                }
+                if (!Guid.TryParse(Id, out Guid userId)) throw new Exception("Id is not valid Guid");
+                     
+ 
 
                 // Check if the file is not null
-                if (file == null || file.Length == 0)
-                {
-                    throw new Exception("Invalid file.");
-                }
+                if (file == null || file.Length == 0) throw new Exception("Invalid file.");
+ 
 
                 // Define the path where the file will be saved
                 string folderName = Path.Combine("Src/Img/User/Avatar");
@@ -146,6 +149,7 @@ namespace KMS.API.Controllers
                 return Ok(ApiResponse.Response(ex.Message));
             }
         }
-    
+
+ 
     }
 }

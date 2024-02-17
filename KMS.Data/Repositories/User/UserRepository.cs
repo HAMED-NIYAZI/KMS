@@ -41,7 +41,7 @@ namespace KMS.Data.Repositories.User
             param.Add("@Id", Id);
 
 
-            var res = ExecuteTsqlGetOne<string>(sp, param);
+            var res = ExecuteTsql<string>(sp, param);
 
             return res;
         }
@@ -62,13 +62,19 @@ namespace KMS.Data.Repositories.User
         public void EditUserProfile(UserEditProfileDto model)
         {
             var sp = @"UPDATE  [dbo].[Users]
-                       SET FirstName=@FirstName,LastName=@LastName,Phone=@Phone,Email=@Email,[Address]=@Address,About=@About
+                       SET FirstName=@FirstName,LastName=@LastName,Phone=@Phone,Email=@Email,[Address]=@Address,About=@About,LastUpdateDate=getdate()
                        WHERE Id=@Id
                        ";
 
 
             var param = new DynamicParameters();
             param.Add("@Id", model.Id);
+            param.Add("@FirstName", model.FirstName);
+            param.Add("@LastName", model.LastName);
+            param.Add("@Phone", model.Phone);
+            param.Add("@Email", model.Email);
+            param.Add("@Address", model.Address);
+            param.Add("@About", model.About);
 
             ExecuteTsql(sp, param);
 
@@ -76,7 +82,7 @@ namespace KMS.Data.Repositories.User
 
         public void EditUserProfileImage(Guid Id, string imagePath)
         {
-            var sp = @"UPDATE  [dbo].[Users]
+            var script = @"UPDATE  [dbo].[Users]
                        SET ImagePath=@ImagePath
                        WHERE Id=@Id
                        ";
@@ -85,7 +91,7 @@ namespace KMS.Data.Repositories.User
             param.Add("@Id", Id);
             param.Add("@ImagePath", imagePath);
 
-            ExecuteTsql(sp, param);
+            ExecuteTsql(script, param);
 
         }
 

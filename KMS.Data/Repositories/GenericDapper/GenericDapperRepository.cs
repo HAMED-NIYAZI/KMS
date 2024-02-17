@@ -255,9 +255,9 @@ namespace KMS.Data.Repositories.GenericDapper
 
             return result;
         }
+       
         public List<T>? ExecuteStoredProcedureGetList<T>(string sp, DynamicParameters parms)
         {
- 
             using (var connection = new SqlConnection(config.GetConnectionString(connectionstring)))
             {
                 connection.Open();
@@ -265,9 +265,7 @@ namespace KMS.Data.Repositories.GenericDapper
             }
         }
 
-
-
-        public T? ExecuteTsqlGetOne<T>(string sp, DynamicParameters parms)
+        public T? ExecuteTsql<T>(string script, DynamicParameters parms)
         {
             T? result;
             using IDbConnection db = GetDbconnection();
@@ -280,7 +278,7 @@ namespace KMS.Data.Repositories.GenericDapper
                 try
                 {
                     // Pass the transaction object as a parameter to the Query method
-                    result = db.Query<T>(sp, parms, commandType: CommandType.Text, transaction: tran).FirstOrDefault();
+                    result = db.Query<T>(script, parms, commandType: CommandType.Text, transaction: tran).FirstOrDefault();
                     tran.Commit();
                 }
                 catch (Exception ex)

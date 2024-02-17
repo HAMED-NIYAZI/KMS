@@ -15,7 +15,7 @@ namespace KMS.Data.Repositories.GenericDapper
         int Count(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
         T? ExecuteStoredProcedureGetOne<T>(string sp, DynamicParameters parms);
         List<T>? ExecuteStoredProcedureGetList<T>(string sp, DynamicParameters parms);
-        T? ExecuteTsqlGetOne<T>(string sp, DynamicParameters parms);
+        T? ExecuteTsql<T>(string script, DynamicParameters parms);
 
 
     }
