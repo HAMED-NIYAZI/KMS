@@ -30,6 +30,11 @@ namespace KMS.API.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
 
+        /// <summary>
+        /// لیست تمام کاربران
+        /// </summary>
+        /// <returns>A list of users.</returns>
+        /// 
         [HttpPost("GetById")]
         public IActionResult GetById(string Id)
         {
@@ -47,7 +52,7 @@ namespace KMS.API.Controllers
                         var cacheEntryOptions = new MemoryCacheEntryOptions()
                             .SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeOut));
 
-                        data.ImagePath = ImagePath.GetUserAvatarPath(configuration,data.ImagePath);
+                        data.ImagePath = ImagePath.GetUserAvatarPath(configuration, data.ImagePath);
 
                         cache.Set(cacheKey, data, cacheEntryOptions);
                     }
@@ -107,18 +112,21 @@ namespace KMS.API.Controllers
             }
         }
 
-        [HttpPost("EditUserProfileImage/{Id}")]
-        public async Task<IActionResult> EditUserProfileImage(IFormFile file, string Id)
+        [AllowAnonymous]
+         [HttpPost("EditUserProfileImage")]
+        public async Task<IActionResult> EditUserProfileImage( IFormFile file, string Id)
         {
+
             try
             {
+
                 if (!Guid.TryParse(Id, out Guid userId)) throw new Exception("Id is not valid Guid");
-                     
- 
+
+
 
                 // Check if the file is not null
                 if (file == null || file.Length == 0) throw new Exception("Invalid file.");
- 
+
 
                 // Define the path where the file will be saved
                 string folderName = Path.Combine("Src/Img/User/Avatar");
@@ -139,7 +147,7 @@ namespace KMS.API.Controllers
                 }
 
                 var res = userService.EditUserProfileImage(userId, fileName);
-
+                 cache.Remove("GetById" + Id);
 
                 // Return a success message
                 return Ok(ApiResponse.Response(res));
@@ -149,7 +157,7 @@ namespace KMS.API.Controllers
                 return Ok(ApiResponse.Response(ex.Message));
             }
         }
-
  
+
     }
 }
