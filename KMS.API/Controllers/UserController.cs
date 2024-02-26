@@ -147,7 +147,9 @@ namespace KMS.API.Controllers
                 }
 
                 var res = userService.EditUserProfileImage(userId, fileName);
-                 cache.Remove("GetById" + Id);
+                res.ImagePath = ImagePath.GetUserAvatarPath(configuration, res.ImagePath);
+
+                cache.Remove("GetById" + Id);
 
                 // Return a success message
                 return Ok(ApiResponse.Response(res));
