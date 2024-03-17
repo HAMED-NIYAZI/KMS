@@ -28,7 +28,9 @@ namespace KMS.API.Controllers
             this.userService = userService;
         }
 
-
+        /// <summary>
+        /// لاگین
+        /// </summary>
         [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
@@ -36,6 +38,7 @@ namespace KMS.API.Controllers
             try
             {
                 //Log
+
                 // Log(userLoginDto);
 
                 //validation
@@ -60,6 +63,10 @@ namespace KMS.API.Controllers
             }
         }
 
+
+        /// <summary>
+        /// درخواست عضویت-درخواست ثبتنام
+        /// </summary>
         [AllowAnonymous]
         [HttpPost("RequestRegister")]
         public async Task<IActionResult> RequestRegister(RequestRegisterDto model)

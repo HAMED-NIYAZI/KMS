@@ -31,11 +31,11 @@ namespace KMS.API.Controllers
         }
 
         /// <summary>
-        /// لیست تمام کاربران
+        ///  دریافت کاربر با کد کاربر
         /// </summary>
         /// <returns>A list of users.</returns>
         /// 
-        [HttpPost("GetById")]
+        [HttpGet("GetById")]
         public IActionResult GetById(string Id)
         {
             try
@@ -68,6 +68,13 @@ namespace KMS.API.Controllers
         }
 
 
+
+
+        /// <summary>
+        ///  تغییر پسورد توسط کاربر 
+        /// </summary>
+        /// <returns>A list of users.</returns>
+        /// 
         [HttpPost("ChangePasswordByUser")]
         public IActionResult ChangePasswordByUser(UserChangePasswordDto model)
         {
@@ -89,6 +96,14 @@ namespace KMS.API.Controllers
         }
 
 
+
+
+
+        /// <summary>
+        /// ویرایش پروفایل توسط کاربر
+        /// </summary>
+        /// <returns>A list of users.</returns>
+        /// 
         [HttpPost("EditUserProfile")]
         public IActionResult EditUserProfile(UserEditProfileDto model)
         {
@@ -112,7 +127,14 @@ namespace KMS.API.Controllers
             }
         }
 
-        [AllowAnonymous]
+
+
+        /// <summary>
+        /// ویرایش عکس پروفایل توسط کاربر
+        /// </summary>
+        /// <returns>A list of users.</returns>
+        /// 
+         [AllowAnonymous]
          [HttpPost("EditUserProfileImage")]
         public async Task<IActionResult> EditUserProfileImage( IFormFile file, string Id)
         {

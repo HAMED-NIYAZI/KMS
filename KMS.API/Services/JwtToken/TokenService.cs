@@ -35,12 +35,16 @@ public class TokenService : ITokenService
         var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
         //یک سکیوریتی توکن دیسکریپتور ساختیم
+        var date = DateTime.UtcNow;
         var tokenDescriptor = new SecurityTokenDescriptor()
         {
             Subject = new ClaimsIdentity(claim), //کلایم را به موضوع زدیم
-            Expires = DateTime.Now.AddMinutes(int.Parse(timeOuToken)),//تعداد روز های اعتبار توکن
+            Expires = date.AddMinutes(int.Parse(timeOuToken)),//تعداد روز های اعتبار توکن
+            NotBefore = date,
             SigningCredentials = creds //کردنشیال بالا را در ساین این کردنشیال زدیم
         };
+
+
         var tokenHandler = new JwtSecurityTokenHandler();//یک توکن هندلر ساختیم
         var token = tokenHandler.CreateToken(tokenDescriptor);// توکن را می سازیم
 

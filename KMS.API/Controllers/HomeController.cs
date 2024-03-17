@@ -20,6 +20,11 @@ namespace KMS.API.Controllers
             this.configuration = configuration;
         }
 
+
+        /// <summary>
+        /// گرفتن اطلاعات برای صفحه لاگین
+        /// </summary>
+
         [HttpGet("GetLoginPageSetting")]
         [AllowAnonymous]
         public async Task<IActionResult> GetLoginPageSetting()
