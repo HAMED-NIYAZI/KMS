@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Extensions.Configuration;
 using System.ComponentModel.DataAnnotations;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace KMS.Data.Repositories.GenericDapper
 {
@@ -30,6 +31,7 @@ namespace KMS.Data.Repositories.GenericDapper
 
         }
 
+        //Just Run a TSQL
         public void ExecuteTsql(string script, DynamicParameters parms)
         {
               using IDbConnection db = GetDbconnection();
@@ -62,6 +64,48 @@ namespace KMS.Data.Repositories.GenericDapper
             }
         }
 
+        //Just Run a TSQL and return an int
+        public int ExecuteTsqlCount(string script, DynamicParameters @params)
+        {
+
+
+            using IDbConnection db = GetDbconnection();
+            try
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+
+                using var tran = db.BeginTransaction();
+                try
+                {
+                    // Correctly pass the transaction object to the SqlCommand
+                    using (var command = new SqlCommand(script, (SqlConnection)db, (SqlTransaction)tran))
+                    {
+                        // Execute the command within the transaction
+                        var count= (int)command.ExecuteScalar();
+                        tran.Commit();
+                        return count;
+
+                    }
+                 }
+                catch (Exception ex)
+                {
+                    // Rollback the transaction in case of any error
+                    tran.Rollback();
+                    throw; // Rethrow the exception without wrapping it
+                }
+            }
+            catch (Exception ex)
+            {
+                throw; // Rethrow the exception without wrapping it
+            }
+            finally
+            {
+                if (db.State == ConnectionState.Open)
+                    db.Close();
+            }
+
+        }
         public T? Get<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.Text)
         {
             using IDbConnection db = new SqlConnection(config.GetConnectionString(connectionstring));

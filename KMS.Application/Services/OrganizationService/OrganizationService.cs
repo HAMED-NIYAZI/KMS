@@ -16,12 +16,23 @@ namespace KMS.Application.Services.OrganizationService
 			this.mapper = mapper;
 		}
 
-		public Task<int> Add(OrganizationDto organization)
+		public async Task<int> Add(OrganizationDto organization)
 		{
-			return organizationRepository.Add(mapper.Map<Organization>(organization));
+			if (organization.ParentId is not null)
+            {
+                var organizationParent = await organizationRepository.Get((Guid)organization.ParentId);
+                if (organizationParent is null) throw new System.Exception("ParentId is not valid");
+            }
+
+            return await organizationRepository.Add(mapper.Map<Organization>(organization));
 		}
 
-		public Task<int> Delete(Guid id)
+        public async Task<int> Count()
+        {
+			return await organizationRepository.Count();
+        }
+
+        public Task<int> Delete(Guid id)
 		{
 			return organizationRepository.Delete(id);
 		}

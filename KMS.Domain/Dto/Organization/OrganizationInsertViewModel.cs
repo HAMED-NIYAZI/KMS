@@ -1,6 +1,6 @@
 ﻿namespace KMS.Domain.Dto.Organization
 {
-    public class OrganizationSaveViewModel
+    public class OrganizationInsertViewModel
     {
         public int SortingNumber { get; set; }
         public string PersianTitle { get; set; }

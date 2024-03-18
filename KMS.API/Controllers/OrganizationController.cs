@@ -21,7 +21,46 @@ namespace KMS.Api.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("GetAll")]
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add(OrganizationInsertViewModel organViewmodel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Guid.TryParse(organViewmodel.ParentId.ToString(), out Guid result);
+                    var dto = new OrganizationDto()
+                    {
+                        Id = Guid.NewGuid(),
+                        SortingNumber = organViewmodel.SortingNumber,
+                        PersianTitle = organViewmodel.PersianTitle,
+                        ParentId = result == Guid.Empty ? null : result,
+                    };
+                    var res = await organizationService.Add(dto);
+                    return Ok(ApiResponse.Response(Data: res));
+                }
+                return Ok(ApiResponse.Response(msg: "Validation Error :ModelState Is Not Valid"));
+            }
+            catch (Exception ex)
+            {
+                return Ok(ApiResponse.Response(ex.Message));
+            }
+        }
+
+        [HttpGet("Count")]
+        public async Task<IActionResult> Count()
+        {
+            try
+            {
+                    var res = await organizationService.Count();
+                    return Ok(ApiResponse.Response(Data: res));
+             }
+            catch (Exception ex)
+            {
+                return Ok(ApiResponse.Response(ex.Message));
+            }
+        }
+       [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()//getall
         {
             try
@@ -85,31 +124,7 @@ namespace KMS.Api.Controllers
             }
         }
 
-        [HttpPost("Add")]
-        public async Task<IActionResult> Add([FromBody] OrganizationSaveViewModel organViewmodel)//create
-        {
-             try
-            {
-                if (ModelState.IsValid)
-                {
-                    _ = Guid.TryParse(organViewmodel.ParentId.ToString(), out Guid result);
-                    var dto = new OrganizationDto()
-                    {
-                        Id = Guid.NewGuid(),
-                        SortingNumber = organViewmodel.SortingNumber,
-                        PersianTitle = organViewmodel.PersianTitle,
-                        ParentId = result == Guid.Empty ? null : result,
-                    };
-                    var res = await organizationService.Add(dto);
-                    return Ok(ApiResponse.Response(Data: res));
-                }
-                return Ok(ApiResponse.Response(msg: "ModelState.IsValid"));
-            }
-            catch (Exception ex)
-            {
-                return Ok(ApiResponse.Response(ex.Message));
-            }
-        }
+
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] OrganizationDto organizationDto)//update

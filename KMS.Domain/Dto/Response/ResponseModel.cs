@@ -39,7 +39,7 @@ public static class ApiResponse
         return Data is null ?
                 new ResponseModel { Data = null, Message = "دیتا یافت نشد", Result = Result.NotFound, StatusCode = 404 }
                   :
-                  new ResponseModel { Data = Data, Message = "دیتا یافت شد", Result = Result.Success, StatusCode = 200 }
+                  new ResponseModel { Data = Data, Message = "عملیات موفقیت انجام شد ", Result = Result.Success, StatusCode = 200 }
                ;
     }
 

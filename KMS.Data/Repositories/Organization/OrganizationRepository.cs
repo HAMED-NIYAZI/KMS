@@ -30,12 +30,33 @@ namespace KMS.Data.Repositories.Organization
                 @params.Add("Description", organization.Description, DbType.String);
                 @params.Add("ParentId", organization.ParentId, DbType.Guid);
 
-                return await Task.FromResult(Insert<int>("[dbo].[Organization.Insert]", @params, commandType: CommandType.StoredProcedure));
+                var script = @"INSERT INTO [dbo].Organizations
+                              ([Id]
+                             ,[SortingNumber]
+                             ,[PersianTitle]
+                             ,[EnglishTitle]
+                             ,[Description]
+                             ,[ParentId]
+                             ,[CreateDate]
+                             ,[LastUpdateDate]
+                             ,[IsDeleted])
+                             VALUES( 
+                              @Id
+                             ,@SortingNumber
+                             ,@PersianTitle
+                             ,@EnglishTitle
+                             ,@Description
+                             ,@ParentId
+                             ,GETDATE()
+                             ,GETDATE()
+                             ,0)";
+
+                await Task.Run(() => { ExecuteTsql(script, @params); });
+                return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log
-                return 0;
+                throw new System.Exception(ex.Message);
             }
         }
 
@@ -44,7 +65,11 @@ namespace KMS.Data.Repositories.Organization
             try
             {
                 var @params = new DynamicParameters();
-                return await Task.FromResult(Count("[dbo].[Organization.Count]", @params, commandType: CommandType.StoredProcedure));
+                var script = @"SELECT COUNT(Id) FROM dbo.Organizations";
+                var count = 0;
+                await Task.Run(() => { count= ExecuteTsqlCount(script, @params); });
+                return count;
+
             }
             catch (Exception)
             {
@@ -158,8 +183,8 @@ namespace KMS.Data.Repositories.Organization
                 @params.Add("SortingNumber", organization.SortingNumber, DbType.Int32);
                 @params.Add("PersianTitle", organization.PersianTitle, DbType.String);
                 @params.Add("ParentId", organization.ParentId, DbType.Guid);
- 
-               var list = await Task.FromResult(Update<int>("[dbo].[Organization.Update]", @params, commandType: CommandType.StoredProcedure));
+
+                var list = await Task.FromResult(Update<int>("[dbo].[Organization.Update]", @params, commandType: CommandType.StoredProcedure));
                 return list;
             }
             catch (Exception)
