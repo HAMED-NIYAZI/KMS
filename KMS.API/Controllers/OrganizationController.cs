@@ -21,6 +21,10 @@ namespace KMS.Api.Controllers
             this.mapper = mapper;
         }
 
+        #region Add
+        /// <summary>
+        ///  ادد سازمان مدل ورودی OrganizationInsertViewModel
+        /// </summary>
         [HttpPost("Add")]
         public async Task<IActionResult> Add(OrganizationInsertViewModel organViewmodel)
         {
@@ -46,22 +50,31 @@ namespace KMS.Api.Controllers
                 return Ok(ApiResponse.Response(ex.Message));
             }
         }
+        #endregion Add
 
+        #region Get
+        /// <summary>
+        /// تعداد سازمان
+        /// </summary>
         [HttpGet("Count")]
         public async Task<IActionResult> Count()
         {
             try
             {
-                    var res = await organizationService.Count();
-                    return Ok(ApiResponse.Response(Data: res));
-             }
+                var res = await organizationService.Count();
+                return Ok(ApiResponse.Response(Data: res));
+            }
             catch (Exception ex)
             {
                 return Ok(ApiResponse.Response(ex.Message));
             }
         }
-       [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()//getall
+
+        /// <summary>
+        /// لیست تمامی سازمان ها را برمی گرداند   GetAll()
+        /// </summary>
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
             try
             {
@@ -72,14 +85,14 @@ namespace KMS.Api.Controllers
             {
                 return Ok(ApiResponse.Response(ex.Message));
             }
-        }
-
-        [HttpGet("GetPage")]
-        public async Task<IActionResult> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC")
+        }       
+        [HttpGet("GetOrganizationTree")]
+        public async Task<IActionResult> GetOrganizationTree()
         {
             try
             {
-                var res = await organizationService.GetPage(PageNumber, RowsOfPage, SortingCol, SortType);
+                 
+                var res = await organizationService.GetOrganizationTree();
                 return Ok(ApiResponse.Response(res));
             }
             catch (Exception ex)
@@ -88,6 +101,27 @@ namespace KMS.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// یک پیج از سازمان برمی گرداند 
+        /// GetPage(int pageNumber = 1, int rowsOfPage = 10, string sortingCol = "Id", string sortType = "ASC")
+        /// </summary>
+        [HttpGet("GetPage")]
+        public async Task<IActionResult> GetPage(int pageNumber = 1, int rowsOfPage = 10, string sortingCol = "Id", string sortType = "ASC")
+        {
+            try
+            {
+                var res = await organizationService.GetPage(pageNumber, rowsOfPage, sortingCol, sortType);
+                return Ok(ApiResponse.Response(res));
+            }
+            catch (Exception ex)
+            {
+                return Ok(ApiResponse.Response(ex.Message));
+            }
+        }
+
+        /// <summary>
+        ///  GetById/{id}
+        /// </summary>
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetByIdAsync(string id)
         {
@@ -106,6 +140,9 @@ namespace KMS.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// GetByTitle/{title}
+        /// </summary>
         [HttpGet("GetByTitle/{title}")]
         public async Task<IActionResult> GetByTitle(string title)
         {
@@ -123,11 +160,14 @@ namespace KMS.Api.Controllers
                 return Ok(ApiResponse.Response(ex.Message));
             }
         }
+        #endregion Get
 
-
-
+        #region Update
+        /// <summary>
+        ///  Update(OrganizationDto organizationDto)
+        /// </summary>
         [HttpPut("Update")]
-        public async Task<IActionResult> Update([FromBody] OrganizationDto organizationDto)//update
+        public async Task<IActionResult> Update(OrganizationDto organizationDto)
         {
             try
             {
@@ -137,15 +177,19 @@ namespace KMS.Api.Controllers
 
                     return Ok(ApiResponse.Response(res));
                 }
-                return Ok(ApiResponse.Response(msg: "ModelState.IsValid"));
+                return Ok(ApiResponse.Response(msg: "ModelState Is not Valid"));
             }
             catch (Exception ex)
             {
                 return Ok(ApiResponse.Response(ex.Message));
             }
         }
+        #endregion Update
 
         #region Delete
+        /// <summary>
+        /// DeleteById/{id}  DeleteById(string id)
+        /// </summary>
         [HttpDelete("DeleteById/{id}")]
         public async Task<IActionResult> DeleteById(string id)
         {
@@ -158,25 +202,6 @@ namespace KMS.Api.Controllers
                 }
 
                 return Ok(ApiResponse.Response(msg: "id is not Guid Type"));
-            }
-            catch (Exception ex)
-            {
-                return Ok(ApiResponse.Response(ex.Message));
-            }
-        }
-
-        [HttpDelete("DeleteByName/{name}")]
-        public async Task<IActionResult> DeleteByName(string name)
-        {
-             try
-            {
-                if (!(string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name)))
-                {
-                    var res = await organizationService.Delete(name);
-                    return Ok(ApiResponse.Response(res));
-                }
-
-                return Ok(ApiResponse.Response(msg: "name is not a valid string Type"));
             }
             catch (Exception ex)
             {

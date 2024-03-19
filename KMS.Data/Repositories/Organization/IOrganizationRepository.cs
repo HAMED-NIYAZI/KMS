@@ -15,7 +15,6 @@ namespace KMS.Data.Repositories.Organization
         Task<Domain.Organization?> Get(Guid id);
         Task<Domain.Organization?> Get(string name);
         Task<int> Delete(Guid id);
-        Task<int> Delete(string name);
         Task<int> Update(Domain.Organization organization);
         Task<int> Add(Domain.Organization organization);
         Task<int> Count();

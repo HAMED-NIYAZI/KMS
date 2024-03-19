@@ -18,12 +18,9 @@ namespace KMS.Application.Services.OrganizationService
         Task<OrganizationDto?> Get(Guid id);
         Task<OrganizationDto?> Get(string name);
         Task<int> Delete(Guid id);
-        Task<int> Delete(string name);
         Task<int> Update(OrganizationDto organization);
         Task<int> Add(OrganizationDto organization);
         Task<int> Count();
         Task<List<OrganizationTree>?> GetOrganizationTree();
- 
-
-	}
+    }
 }

@@ -67,7 +67,7 @@ namespace KMS.Data.Repositories.Organization
                 var @params = new DynamicParameters();
                 var script = @"SELECT COUNT(Id) FROM dbo.Organizations";
                 var count = 0;
-                await Task.Run(() => { count= ExecuteTsqlCount(script, @params); });
+                await Task.Run(() => { count = ExecuteTsqlCount(script, @params); });
                 return count;
 
             }
@@ -82,29 +82,15 @@ namespace KMS.Data.Repositories.Organization
         {
             try
             {
+                var script = "UPDATE [dbo].Organizations SET IsDeleted=1 WHERE Id=@Id";
                 var @params = new DynamicParameters();
                 @params.Add("Id", id, DbType.Guid);
-                return await Task.FromResult(Update<int>("[dbo].[Organization.DeleteById]", @params, commandType: CommandType.StoredProcedure));
+                await Task.Run(() => { ExecuteTsql(script, @params); });
+                return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log
-                return 0;
-            }
-        }
-
-        public async Task<int> Delete(string name)
-        {
-            try
-            {
-                var @params = new DynamicParameters();
-                @params.Add("PersianTitle", name, DbType.String);
-                return await Task.FromResult(Update<int>("[dbo].[Organization.DeleteByName]", @params, commandType: CommandType.StoredProcedure));
-            }
-            catch (Exception)
-            {
-                //Log
-                return 0;
+                throw new System.Exception(ex.Message);
             }
         }
 
@@ -112,29 +98,31 @@ namespace KMS.Data.Repositories.Organization
         {
             try
             {
+                var script = "SELECT * From [dbo].Organizations WHERE Id=@Id";
                 var @params = new DynamicParameters();
                 @params.Add("Id", id, DbType.Guid);
-                return await Task.FromResult(Get<Domain.Organization?>("[dbo].[Organization.GetById]", @params, commandType: CommandType.StoredProcedure));
+
+                return await Task.FromResult(Get<Domain.Organization?>(script, @params, commandType: CommandType.Text));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log
-                return null;
+                throw new System.Exception(ex.Message);
             }
         }
 
-        public async Task<Domain.Organization?> Get(string name)
+        public async Task<Domain.Organization?> Get(string persianTitle)
         {
             try
             {
+                var script = "SELECT * From [dbo].Organizations WHERE [PersianTitle]=@PersianTitle";
                 var @params = new DynamicParameters();
-                @params.Add("Id", name, DbType.String);
-                return await Task.FromResult(Get<Domain.Organization>("[dbo].[Organization.GetByName]", @params, commandType: CommandType.StoredProcedure));
+                @params.Add("@PersianTitle", persianTitle, DbType.String);
+
+                return await Task.FromResult(Get<Domain.Organization?>(script, @params, commandType: CommandType.Text));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log
-                return null;
+                throw new System.Exception(ex.Message);
             }
         }
 
@@ -142,35 +130,42 @@ namespace KMS.Data.Repositories.Organization
         {
             try
             {
+                var script = " SELECT * FROM   [dbo].Organizations  WHERE IsDeleted=0";
                 var @params = new DynamicParameters();
-                List<Domain.Organization> list = await Task.FromResult(GetAll<Domain.Organization>("[dbo].[Organization.GetAll]", @params, commandType: CommandType.StoredProcedure));
+                List<Domain.Organization> list = await Task.FromResult(GetAll<Domain.Organization>(script, @params, commandType: CommandType.Text));
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log
-                return null;
+                throw new System.Exception(ex.Message);
             }
         }
 
-
-        public async Task<List<Domain.Organization>?> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC")
+        public async Task<List<Domain.Organization>?> GetPage(int pageNumber = 1, int rowsOfPage = 10, string sortingCol = "Id", string sortType = "ASC")
         {
             try
             {
-                var @params = new DynamicParameters();
-                @params.Add("PageNumber", PageNumber, DbType.Int32);
-                @params.Add("RowsOfPage", RowsOfPage, DbType.Int32);
-                @params.Add("SortingCol", SortingCol, DbType.String);
-                @params.Add("SortType", SortType, DbType.String);
+                var script = @"SELECT * FROM [dbo].Organizations
+                            ORDER BY 
+                            CASE WHEN @SortingCol = 'Id' AND @SortType ='ASC' THEN Id END ,
+                            CASE WHEN @SortingCol = 'Id' AND @SortType ='DESC' THEN ID END DESC,
+                            CASE WHEN @SortingCol = 'PersianTitle' AND @SortType ='ASC' THEN PersianTitle END ,
+                            CASE WHEN @SortingCol = 'PersianTitle' AND @SortType ='DESC' THEN PersianTitle END DESC
+                            OFFSET (@PageNumber-1)*@RowsOfPage ROWS
+                            FETCH NEXT @RowsOfPage ROWS ONLY";
 
-                List<Domain.Organization> list = await Task.FromResult(GetAll<Domain.Organization>("[dbo].[Organization.GetPage]", @params, commandType: CommandType.StoredProcedure));
+                var @params = new DynamicParameters();
+                @params.Add("PageNumber", pageNumber, DbType.Int32);
+                @params.Add("RowsOfPage", rowsOfPage, DbType.Int32);
+                @params.Add("SortingCol", sortingCol, DbType.String);
+                @params.Add("SortType", sortType, DbType.String);
+
+                List<Domain.Organization> list = await Task.FromResult(GetAll<Domain.Organization>(script, @params, commandType: CommandType.Text));
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log
-                return null;
+                throw new System.Exception(ex.Message);
             }
         }
 
@@ -178,19 +173,23 @@ namespace KMS.Data.Repositories.Organization
         {
             try
             {
+                var script = @"UPDATE [dbo].[Organizations] 
+                            SET SortingNumber=@SortingNumber, PersianTitle=@PersianTitle,ParentId=@ParentId,LastUpdateDate=GETDATE()
+                            WHERE Id=@Id
+                            SELECT @@rowcount";
+
                 var @params = new DynamicParameters();
                 @params.Add("Id", organization.Id, DbType.Guid);
                 @params.Add("SortingNumber", organization.SortingNumber, DbType.Int32);
                 @params.Add("PersianTitle", organization.PersianTitle, DbType.String);
                 @params.Add("ParentId", organization.ParentId, DbType.Guid);
 
-                var list = await Task.FromResult(Update<int>("[dbo].[Organization.Update]", @params, commandType: CommandType.StoredProcedure));
+                var list = await Task.FromResult(Update<int>(script, @params, commandType: CommandType.Text));
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log
-                return 0;
+                throw new System.Exception(ex.Message);
             }
         }
     }

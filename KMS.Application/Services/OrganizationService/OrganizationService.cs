@@ -32,14 +32,9 @@ namespace KMS.Application.Services.OrganizationService
 			return await organizationRepository.Count();
         }
 
-        public Task<int> Delete(Guid id)
+        public async Task<int> Delete(Guid id)
 		{
-			return organizationRepository.Delete(id);
-		}
-
-		public async Task<int> Delete(string name)
-		{
-			return await organizationRepository.Delete(name);
+			return await organizationRepository.Delete(id);
 		}
 
 		public async Task<OrganizationDto> Get(Guid id)
@@ -96,8 +91,6 @@ namespace KMS.Application.Services.OrganizationService
 
 			return listTree;
 		}
-
-
 
 		public async Task<List<OrganizationDto>> GetPage(int PageNumber = 1, int RowsOfPage = 10, string SortingCol = "Id", string SortType = "ASC")
 		{
